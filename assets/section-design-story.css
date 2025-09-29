@@ -1,0 +1,564 @@
+/**
+ * RAVAN FASHION - DESIGN STORY SECTION STYLES
+ * Cultural Journey Timeline with Tamil Elements
+ * Mobile-First Responsive Design
+ */
+
+.design-story {
+  padding: calc(var(--ravan-spacing) * 2) 0;
+  background: linear-gradient(135deg,
+    rgba(255, 153, 51, 0.02) 0%,
+    rgba(255, 215, 0, 0.02) 50%,
+    rgba(75, 0, 130, 0.02) 100%);
+}
+
+.design-story__wrapper {
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.design-story__heading {
+  font-family: var(--ravan-tamil-font);
+  font-size: var(--ravan-heading-size);
+  font-weight: 700;
+  color: var(--ravan-maroon);
+  margin-bottom: var(--ravan-spacing);
+  position: relative;
+}
+
+.design-story__heading::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ravan-saffron), var(--ravan-gold));
+  border-radius: 2px;
+}
+
+.design-story__subtitle {
+  font-family: var(--ravan-tamil-font);
+  font-size: var(--ravan-subheading-size);
+  color: var(--ravan-saffron);
+  margin-bottom: calc(var(--ravan-spacing) * 2);
+  line-height: 1.6;
+}
+
+.design-story__journey {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--ravan-spacing) * 2);
+  align-items: center;
+}
+
+.design-story__section {
+  width: 100%;
+  max-width: 800px;
+  padding: calc(var(--ravan-spacing) * 1.5);
+  text-align: left;
+  transition: transform 0.3s ease;
+  background: var(--ravan-white);
+  border: 2px solid var(--ravan-saffron);
+  border-radius: 15px;
+  position: relative;
+}
+
+.design-story__section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 25% 25%, var(--ravan-gold) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.1;
+  pointer-events: none;
+  border-radius: 13px;
+}
+
+.design-story__section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255, 153, 51, 0.15);
+}
+
+.design-story__section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.design-story__section-title {
+  font-family: var(--ravan-tamil-font);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ravan-maroon);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.design-story__step-indicator {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ravan-gold);
+  color: var(--ravan-maroon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  font-family: var(--ravan-tamil-font);
+  box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+}
+
+.design-story__image-wrapper {
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.design-story__image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 153, 51, 0.1), rgba(255, 215, 0, 0.1));
+  pointer-events: none;
+}
+
+.design-story__image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.design-story__section:hover .design-story__image {
+  transform: scale(1.02);
+}
+
+.design-story__content {
+  margin-top: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.design-story__text {
+  font-family: var(--ravan-tamil-font);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: var(--ravan-black);
+}
+
+.design-story__cultural-term {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tamil-term {
+  font-family: var(--ravan-tamil-font);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ravan-maroon);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.tamil-term:hover {
+  color: var(--ravan-saffron);
+  transform: scale(1.02);
+}
+
+.translation {
+  font-size: 1rem;
+  color: var(--ravan-saffron);
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* Journey Timeline Styles */
+.design-story__journey-timeline {
+  position: relative;
+  padding-left: 2rem;
+  min-height: 100px;
+}
+
+.journey-step {
+  position: relative;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.6s ease;
+}
+
+.journey-step.animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.journey-step__marker {
+  position: absolute;
+  left: -2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.journey-step__dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--ravan-saffron);
+  border: 3px solid var(--ravan-gold);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.journey-step:hover .journey-step__dot {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgba(255, 153, 51, 0.5);
+}
+
+.journey-step__line {
+  width: 2px;
+  height: 100%;
+  background: var(--ravan-gold);
+  opacity: 0.5;
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+
+.journey-step:last-child .journey-step__line {
+  display: none;
+}
+
+.journey-step__content {
+  flex: 1;
+  padding-left: 1rem;
+}
+
+.journey-step__title {
+  font-family: var(--ravan-tamil-font);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ravan-maroon);
+  margin-bottom: 0.5rem;
+}
+
+.journey-step__description {
+  font-family: var(--ravan-tamil-font);
+  line-height: 1.5;
+  color: var(--ravan-black);
+}
+
+/* Heritage Grid Styles */
+.design-story__heritage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.heritage-image img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.heritage-image:hover img {
+  transform: scale(1.05);
+}
+
+.heritage-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.design-story__heritage-text {
+  font-family: var(--ravan-tamil-font);
+  line-height: 1.6;
+  color: var(--ravan-black);
+}
+
+.heritage-elements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.heritage-tag {
+  background: var(--ravan-terracotta);
+  color: var(--ravan-white);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: var(--ravan-tamil-font);
+  transition: all 0.3s ease;
+}
+
+.heritage-tag:hover {
+  background: var(--ravan-saffron);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 153, 51, 0.3);
+}
+
+/* Modern Content Styles */
+.design-story__modern-content {
+  text-align: center;
+  padding: 1rem;
+}
+
+.design-story__modern-text {
+  font-family: var(--ravan-tamil-font);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: var(--ravan-black);
+}
+
+.design-story__cta {
+  margin-top: 1.5rem;
+}
+
+.design-story__cta a {
+  background: linear-gradient(135deg, var(--ravan-saffron), var(--ravan-terracotta));
+  color: var(--ravan-white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-family: var(--ravan-tamil-font);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.design-story__cta a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.design-story__cta a:hover::before {
+  left: 100%;
+}
+
+.design-story__cta a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 153, 51, 0.3);
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 749px) {
+  .design-story {
+    padding: var(--ravan-spacing) 0;
+  }
+
+  .design-story__section {
+    padding: 1rem;
+  }
+
+  .design-story__journey-timeline {
+    padding-left: 1.5rem;
+  }
+
+  .design-story__heritage-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .design-story__step-indicator {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+
+  .design-story__section-title {
+    font-size: 1.1rem;
+  }
+
+  .tamil-term {
+    font-size: 1.2rem;
+  }
+
+  .journey-step {
+    margin-bottom: 1.5rem;
+  }
+
+  .journey-step__content {
+    padding-left: 0.5rem;
+  }
+
+  .journey-step__title {
+    font-size: 1rem;
+  }
+
+  .heritage-elements {
+    justify-content: center;
+  }
+}
+
+/* Tablet Responsive */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .design-story__section {
+    padding: 1.25rem;
+  }
+
+  .design-story__heritage-grid {
+    gap: 1rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .design-story__section {
+    background: linear-gradient(135deg, rgba(255, 179, 102, 0.1), rgba(255, 224, 102, 0.1));
+    border-color: var(--ravan-saffron);
+  }
+
+  .design-story__section-title,
+  .tamil-term,
+  .journey-step__title {
+    color: var(--ravan-saffron);
+  }
+
+  .design-story__text,
+  .journey-step__description,
+  .design-story__heritage-text,
+  .design-story__modern-text {
+    color: var(--ravan-white);
+  }
+
+  .translation {
+    color: var(--ravan-gold);
+  }
+
+  .design-story__step-indicator {
+    background: var(--ravan-saffron);
+    color: var(--ravan-maroon);
+  }
+
+  .journey-step__dot {
+    background: var(--ravan-gold);
+    border-color: var(--ravan-saffron);
+  }
+
+  .heritage-tag {
+    background: var(--ravan-saffron);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .design-story__section {
+    border-width: 3px;
+    border-color: var(--ravan-maroon);
+  }
+
+  .design-story__step-indicator {
+    border: 2px solid var(--ravan-maroon);
+  }
+
+  .journey-step__dot {
+    border-width: 4px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .design-story__section,
+  .design-story__image,
+  .heritage-image img,
+  .heritage-tag,
+  .design-story__cta a {
+    transition: none;
+  }
+
+  .design-story__section:hover {
+    transform: none;
+  }
+
+  .design-story__cta a::before {
+    animation: none;
+  }
+
+  .journey-step {
+    transition: none;
+  }
+}
+
+/* Accessibility enhancements */
+.design-story__section:focus-within {
+  outline: 3px solid var(--ravan-saffron);
+  outline-offset: 2px;
+}
+
+.design-story__cta a:focus {
+  outline: 2px solid var(--ravan-saffron);
+  outline-offset: 2px;
+}
+
+/* Loading state for animations */
+.design-story__section.design-story--visible {
+  animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Print styles */
+@media print {
+  .design-story {
+    background: none;
+    padding: 1rem 0;
+  }
+
+  .design-story__section {
+    border: 1px solid var(--ravan-black);
+    break-inside: avoid;
+  }
+
+  .design-story__cta {
+    display: none;
+  }
+
+  .journey-step__dot,
+  .journey-step__line {
+    background: var(--ravan-black);
+  }
+}

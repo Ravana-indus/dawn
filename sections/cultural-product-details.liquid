@@ -1,0 +1,361 @@
+{%- comment -%}
+  RAVAN FASHION - CULTURAL PRODUCT DETAILS SECTION
+  Tamil Cultural Elements for Product Enhancement
+  Mobile-First Responsive Design
+{%- endcomment -%}
+
+<div class="cultural-product-details color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding">
+    <div class="cultural-product-details__wrapper">
+
+      {%- if section.settings.heading != blank -%}
+        <div class="cultural-product-details__header">
+          <h2 class="cultural-product-details__heading {{ section.settings.heading_size }}">
+            {{ section.settings.heading | escape }}
+          </h2>
+          <div class="cultural-product-details__subheading">
+            {{ section.settings.subheading | escape }}
+          </div>
+        </div>
+      {%- endif -%}
+
+      <div class="cultural-product-details__content">
+
+        {%- if section.settings.show_cultural_story -%}
+          <div class="cultural-product-details__story">
+            <div class="cultural-story__icon">
+              <span class="tamil-term">கதை</span>
+            </div>
+            <div class="cultural-story__content">
+              <h3 class="cultural-story__title">{{ section.settings.story_title | default: 'Cultural Story' | escape }}</h3>
+              <div class="cultural-story__text rte">
+                {{ section.settings.story_content }}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.show_traditional_elements -%}
+          <div class="cultural-product-details__elements">
+            <h3 class="cultural-elements__title">{{ section.settings.elements_title | default: 'Traditional Elements' | escape }}</h3>
+            <div class="cultural-elements__grid">
+
+              {%- if section.settings.element_1_name != blank -%}
+                <div class="cultural-element__item">
+                  <div class="cultural-element__icon">
+                    {% render 'icon-leaf' %}
+                  </div>
+                  <div class="cultural-element__content">
+                    <h4 class="cultural-element__tamil">{{ section.settings.element_1_name | escape }}</h4>
+                    <p class="cultural-element__english">{{ section.settings.element_1_translation | escape }}</p>
+                    <p class="cultural-element__description">{{ section.settings.element_1_description }}</p>
+                  </div>
+                </div>
+              {%- endif -%}
+
+              {%- if section.settings.element_2_name != blank -%}
+                <div class="cultural-element__item">
+                  <div class="cultural-element__icon">
+                    {% render 'icon-flower' %}
+                  </div>
+                  <div class="cultural-element__content">
+                    <h4 class="cultural-element__tamil">{{ section.settings.element_2_name | escape }}</h4>
+                    <p class="cultural-element__english">{{ section.settings.element_2_translation | escape }}</p>
+                    <p class="cultural-element__description">{{ section.settings.element_2_description }}</p>
+                  </div>
+                </div>
+              {%- endif -%}
+
+              {%- if section.settings.element_3_name != blank -%}
+                <div class="cultural-element__item">
+                  <div class="cultural-element__icon">
+                    {% render 'icon-star' %}
+                  </div>
+                  <div class="cultural-element__content">
+                    <h4 class="cultural-element__tamil">{{ section.settings.element_3_name | escape }}</h4>
+                    <p class="cultural-element__english">{{ section.settings.element_3_translation | escape }}</p>
+                    <p class="cultural-element__description">{{ section.settings.element_3_description }}</p>
+                  </div>
+                </div>
+              {%- endif -%}
+
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.show_craftsmanship -%}
+          <div class="cultural-product-details__craftsmanship">
+            <div class="craftsmanship__header">
+              <div class="craftsmanship__badge">
+                <span class="tamil-term small">கைவித்தன்மை</span>
+              </div>
+              <h3 class="craftsmanship__title">{{ section.settings.craftsmanship_title | default: 'Traditional Craftsmanship' | escape }}</h3>
+            </div>
+            <div class="craftsmanship__content rte">
+              {{ section.settings.craftsmanship_content }}
+            </div>
+            {%- if section.settings.craftsmanship_image != blank -%}
+              <div class="craftsmanship__image">
+                {{
+                  section.settings.craftsmanship_image
+                  | image_url: width: 800
+                  | image_tag:
+                    widths: '400, 600, 800',
+                    sizes: '(min-width: 750px) 600px, 400px',
+                    class: 'craftsmanship__img',
+                    loading: 'lazy'
+                }}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.show_regional_info -%}
+          <div class="cultural-product-details__regional">
+            <div class="regional-info__header">
+              <h3 class="regional-info__title">{{ section.settings.regional_title | default: 'Regional Heritage' | escape }}</h3>
+              <div class="regional-info__location">
+                {% render 'icon-pin' %}
+                <span>{{ section.settings.regional_location | escape }}</span>
+              </div>
+            </div>
+            <div class="regional-info__content rte">
+              {{ section.settings.regional_content }}
+            </div>
+          </div>
+        {%- endif -%}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ 'section-cultural-product-details.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "Cultural Product Details",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Cultural Heritage",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "Discover the story behind our designs",
+      "label": "Subheading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Cultural Story"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cultural_story",
+      "default": true,
+      "label": "Show cultural story"
+    },
+    {
+      "type": "text",
+      "id": "story_title",
+      "default": "The Cultural Journey",
+      "label": "Story title"
+    },
+    {
+      "type": "richtext",
+      "id": "story_content",
+      "default": "<p>Each design tells a story of Tamil heritage, blending traditional elements with contemporary fashion.</p>",
+      "label": "Story content"
+    },
+    {
+      "type": "header",
+      "content": "Traditional Elements"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_traditional_elements",
+      "default": true,
+      "label": "Show traditional elements"
+    },
+    {
+      "type": "text",
+      "id": "elements_title",
+      "default": "Traditional Elements",
+      "label": "Elements title"
+    },
+    {
+      "type": "text",
+      "id": "element_1_name",
+      "default": "கோலம்",
+      "label": "Element 1 (Tamil name)"
+    },
+    {
+      "type": "text",
+      "id": "element_1_translation",
+      "default": "Kolam Pattern",
+      "label": "Element 1 (English translation)"
+    },
+    {
+      "type": "textarea",
+      "id": "element_1_description",
+      "default": "Traditional geometric patterns that symbolize prosperity and welcome",
+      "label": "Element 1 description"
+    },
+    {
+      "type": "text",
+      "id": "element_2_name",
+      "default": "பட்டு",
+      "label": "Element 2 (Tamil name)"
+    },
+    {
+      "type": "text",
+      "id": "element_2_translation",
+      "default": "Silk Weaving",
+      "label": "Element 2 (English translation)"
+    },
+    {
+      "type": "textarea",
+      "id": "element_2_description",
+      "default": "Ancient art of silk weaving passed down through generations",
+      "label": "Element 2 description"
+    },
+    {
+      "type": "text",
+      "id": "element_3_name",
+      "default": "கோவில்",
+      "label": "Element 3 (Tamil name)"
+    },
+    {
+      "type": "text",
+      "id": "element_3_translation",
+      "default": "Temple Architecture",
+      "label": "Element 3 (English translation)"
+    },
+    {
+      "type": "textarea",
+      "id": "element_3_description",
+      "default": "Inspired by the intricate carvings and structures of Tamil temples",
+      "label": "Element 3 description"
+    },
+    {
+      "type": "header",
+      "content": "Craftsmanship"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_craftsmanship",
+      "default": true,
+      "label": "Show craftsmanship section"
+    },
+    {
+      "type": "text",
+      "id": "craftsmanship_title",
+      "default": "Artisan Craftsmanship",
+      "label": "Craftsmanship title"
+    },
+    {
+      "type": "richtext",
+      "id": "craftsmanship_content",
+      "default": "<p>Crafted by skilled artisans using traditional techniques passed down through generations.</p>",
+      "label": "Craftsmanship content"
+    },
+    {
+      "type": "image_picker",
+      "id": "craftsmanship_image",
+      "label": "Craftsmanship image"
+    },
+    {
+      "type": "header",
+      "content": "Regional Heritage"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_regional_info",
+      "default": true,
+      "label": "Show regional information"
+    },
+    {
+      "type": "text",
+      "id": "regional_title",
+      "default": "Regional Heritage",
+      "label": "Regional title"
+    },
+    {
+      "type": "text",
+      "id": "regional_location",
+      "default": "Tamil Nadu, India",
+      "label": "Regional location"
+    },
+    {
+      "type": "richtext",
+      "id": "regional_content",
+      "default": "<p>Rooted in the rich cultural heritage of Tamil Nadu, our designs celebrate the region's artistic traditions.</p>",
+      "label": "Regional content"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cultural Product Details",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,409 @@
+/*
+ * RAVAN FASHION - TAMIL CULTURAL DESIGN PATTERNS
+ * Built on Dawn Theme for Tamil Diaspora Streetwear
+ *
+ * Color Palette:
+ * - Saffron: #FF9933 (கேசரி)
+ * - Maroon: #800020 (சிவப்பு)
+ * - Gold: #FFD700 (தங்கம்)
+ * - Terracotta: #E2725B (மண் சிவப்பு)
+ * - Indigo: #4B0082 (நீலம்)
+ * - White: #FFFFFF (வெள்ளை)
+ * - Black: #000000 (கருப்பு)
+ */
+
+/* ===== TAMIL TYPOGRAPHY ===== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Tamil Cultural Color Variables */
+  --ravan-saffron: #FF9933;
+  --ravan-maroon: #800020;
+  --ravan-gold: #FFD700;
+  --ravan-terracotta: #E2725B;
+  --ravan-indigo: #4B0082;
+  --ravan-white: #FFFFFF;
+  --ravan-black: #000000;
+
+  /* Typography */
+  --ravan-tamil-font: 'Noto Sans Tamil', sans-serif;
+  --ravan-heading-size: clamp(2rem, 5vw, 3.5rem);
+  --ravan-subheading-size: clamp(1.2rem, 3vw, 2rem);
+  --ravan-body-size: clamp(0.9rem, 2vw, 1.1rem);
+
+  /* Cultural Pattern Sizes */
+  --ravan-kolam-size: 20px;
+  --ravan-border-width: 3px;
+  --ravan-spacing: 1.5rem;
+}
+
+/* ===== TAMIL FONT APPLICATION ===== */
+.tamil-text {
+  font-family: var(--ravan-tamil-font);
+  line-height: 1.6;
+}
+
+.tamil-heading {
+  font-family: var(--ravan-tamil-font);
+  font-weight: 700;
+  color: var(--ravan-maroon);
+  text-align: center;
+  margin-bottom: var(--ravan-spacing);
+  position: relative;
+}
+
+.tamil-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ravan-saffron), var(--ravan-gold));
+  border-radius: 2px;
+}
+
+/* ===== KOLAM PATTERN BORDERS ===== */
+.kolam-border {
+  border: var(--ravan-border-width) solid var(--ravan-saffron);
+  border-radius: 15px;
+  position: relative;
+  background: linear-gradient(135deg,
+    rgba(255, 153, 51, 0.05) 0%,
+    rgba(255, 215, 0, 0.05) 50%,
+    rgba(75, 0, 130, 0.05) 100%);
+}
+
+.kolam-border::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border: 1px solid var(--ravan-gold);
+  border-radius: 18px;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+/* Temple Arch Design Element */
+.temple-arch {
+  position: relative;
+  padding: 2rem;
+  background: linear-gradient(180deg, var(--ravan-white) 0%, rgba(255, 215, 0, 0.1) 100%);
+  border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+  border-bottom: 4px solid var(--ravan-gold);
+}
+
+.temple-arch::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 30px;
+  background: var(--ravan-saffron);
+  border-radius: 50% 50% 0 0;
+}
+
+/* ===== SILK TEXTURE BACKGROUNDS ===== */
+.silk-texture {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 215, 0, 0.03) 10px,
+      rgba(255, 215, 0, 0.03) 20px
+    ),
+    linear-gradient(135deg,
+      rgba(255, 153, 51, 0.02) 0%,
+      rgba(226, 114, 91, 0.02) 100%);
+}
+
+/* ===== CULTURAL COLOR CLASSES ===== */
+.cultural-accent {
+  color: var(--ravan-saffron);
+}
+
+.cultural-bg {
+  background-color: var(--ravan-terracotta);
+  color: var(--ravan-white);
+}
+
+.cultural-highlight {
+  background: linear-gradient(90deg, var(--ravan-saffron), var(--ravan-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== TRADITIONAL TAMIL PATTERNS ===== */
+.tamil-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.tamil-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 25% 25%, var(--ravan-gold) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, var(--ravan-saffron) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* ===== MOBILE-FIRST RESPONSIVE DESIGN ===== */
+@media (max-width: 750px) {
+  .tamil-heading {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .kolam-border {
+    border-width: 2px;
+    border-radius: 10px;
+  }
+
+  .temple-arch {
+    padding: 1.5rem;
+  }
+
+  :root {
+    --ravan-spacing: 1rem;
+    --ravan-kolam-size: 15px;
+  }
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ravan-saffron: #FFB366;
+    --ravan-gold: #FFE066;
+    --ravan-terracotta: #FF9B85;
+  }
+
+  .kolam-border {
+    background: linear-gradient(135deg,
+      rgba(255, 179, 102, 0.1) 0%,
+      rgba(255, 224, 102, 0.1) 50%,
+      rgba(75, 0, 130, 0.1) 100%);
+  }
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+.cultural-content {
+  position: relative;
+}
+
+.cultural-content:focus {
+  outline: 3px solid var(--ravan-saffron);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .kolam-border {
+    border-width: 4px;
+    border-color: var(--ravan-maroon);
+  }
+
+  .cultural-highlight {
+    color: var(--ravan-maroon);
+    background: none;
+    -webkit-text-fill-color: initial;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .tamil-pattern::before {
+    animation: none;
+  }
+}
+
+/* ===== BUTTON STYLING WITH CULTURAL ELEMENTS ===== */
+.cultural-button {
+  background: linear-gradient(135deg, var(--ravan-saffron), var(--ravan-terracotta));
+  color: var(--ravan-white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-family: var(--ravan-tamil-font);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cultural-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.cultural-button:hover::before {
+  left: 100%;
+}
+
+.cultural-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 153, 51, 0.3);
+}
+
+/* ===== PRODUCT PAGE ENHANCEMENTS ===== */
+.product-cultural-badge {
+  background: var(--ravan-gold);
+  color: var(--ravan-maroon);
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.design-story-panel {
+  background: var(--ravan-white);
+  border: 2px solid var(--ravan-saffron);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.design-story-panel::before {
+  content: '🕉️';
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background: var(--ravan-white);
+  padding: 5px 10px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+}
+
+/* ===== NAVIGATION WITH TAMIL ELEMENTS ===== */
+.tamil-nav-item {
+  position: relative;
+  font-family: var(--ravan-tamil-font);
+  font-weight: 500;
+}
+
+.tamil-nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--ravan-saffron);
+  transition: width 0.3s ease;
+}
+
+.tamil-nav-item:hover::after {
+  width: 100%;
+}
+
+/* ===== FORM ELEMENTS WITH CULTURAL STYLING ===== */
+.cultural-input {
+  border: 2px solid var(--ravan-saffron);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-family: var(--ravan-tamil-font);
+  transition: all 0.3s ease;
+}
+
+.cultural-input:focus {
+  border-color: var(--ravan-gold);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+  outline: none;
+}
+
+/* ===== FOOTER WITH TAMIL CULTURAL ELEMENTS ===== */
+.tamil-footer {
+  background: linear-gradient(135deg, var(--ravan-maroon), var(--ravan-indigo));
+  color: var(--ravan-white);
+  padding: 3rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.tamil-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 80%, var(--ravan-gold) 1px, transparent 1px),
+    radial-gradient(circle at 80% 20%, var(--ravan-saffron) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.1;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-tamil {
+  font-family: var(--ravan-tamil-font);
+}
+
+.bg-cultural {
+  background: linear-gradient(135deg, var(--ravan-saffron), var(--ravan-terracotta));
+}
+
+.border-kolam {
+  border: 2px solid var(--ravan-saffron);
+  border-radius: 10px;
+}
+
+.shadow-cultural {
+  box-shadow: 0 4px 20px rgba(255, 153, 51, 0.2);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes kolam-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+}
+
+.kolam-glow {
+  animation: kolam-glow 2s ease-in-out infinite;
+}
+
+@keyframes tamil-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.tamil-pulse {
+  animation: tamil-pulse 3s ease-in-out infinite;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .cultural-button,
+  .tamil-pattern::before,
+  .kolam-glow {
+    display: none;
+  }
+
+  .kolam-border {
+    border: 1px solid var(--ravan-black);
+    background: none;
+  }
+}

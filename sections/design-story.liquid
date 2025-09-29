@@ -1,0 +1,604 @@
+{{ 'section-design-story.css' | asset_url | stylesheet_tag }}
+{{ 'design-story.js' | asset_url | script_tag | defer }}
+
+<div class="design-story color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <div class="design-story__wrapper">
+      {%- unless section.settings.title == blank -%}
+        <h2 class="design-story__heading tamil-heading inline-richtext">
+          {{ section.settings.title }}
+        </h2>
+      {%- endunless -%}
+
+      {%- unless section.settings.subtitle == blank -%}
+        <p class="design-story__subtitle tamil-text">
+          {{ section.settings.subtitle }}
+        </p>
+      {%- endunless -%}
+
+      <div class="design-story__journey">
+        <!-- Inspiration Section -->
+        <div class="design-story__section temple-arch kolam-border">
+          <div class="design-story__section-header">
+            <h3 class="design-story__section-title tamil-text cultural-accent">
+              {{ section.settings.inspiration_title | default: 'ஈர்ப்பு' }}
+            </h3>
+            <div class="design-story__step-indicator">1</div>
+          </div>
+
+          {%- if section.settings.inspiration_image != blank -%}
+            <div class="design-story__image-wrapper silk-texture">
+              <img
+                srcset="
+                  {%- if section.settings.inspiration_image.width >= 165 -%}{{ section.settings.inspiration_image | image_url: width: 165 }} 165w,{%- endif -%}
+                  {%- if section.settings.inspiration_image.width >= 360 -%}{{ section.settings.inspiration_image | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if section.settings.inspiration_image.width >= 535 -%}{{ section.settings.inspiration_image | image_url: width: 535 }} 535w,{%- endif -%}
+                  {%- if section.settings.inspiration_image.width >= 750 -%}{{ section.settings.inspiration_image | image_url: width: 750 }} 750w,{%- endif -%}
+                  {%- if section.settings.inspiration_image.width >= 1070 -%}{{ section.settings.inspiration_image | image_url: width: 1070 }} 1070w,{%- endif -%}
+                  {{ section.settings.inspiration_image | image_url }} {{ section.settings.inspiration_image.width }}w
+                "
+                src="{{ section.settings.inspiration_image | image_url: width: 750 }}"
+                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                alt="{{ section.settings.inspiration_image.alt | escape }}"
+                loading="lazy"
+                width="{{ section.settings.inspiration_image.width }}"
+                height="{{ section.settings.inspiration_image.height }}"
+                class="design-story__image"
+              >
+            </div>
+          {%- endif -%}
+
+          <div class="design-story__content">
+            <div class="design-story__text rte tamil-text">
+              {{ section.settings.inspiration_content | default: '<p>இந்த வடிவமைப்பின் ஈர்ப்பு தமிழ் பாரம்பரியத்திலிருந்து பெறப்பட்டது.</p>' }}
+            </div>
+
+            {%- if section.settings.inspiration_tamil_term != blank -%}
+              <div class="design-story__cultural-term">
+                <span class="tamil-term tamil-text cultural-highlight">{{ section.settings.inspiration_tamil_term }}</span>
+                <span class="translation">{{ section.settings.inspiration_translation }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <!-- Journey Section -->
+        <div class="design-story__section temple-arch kolam-border">
+          <div class="design-story__section-header">
+            <h3 class="design-story__section-title tamil-text cultural-accent">
+              {{ section.settings.journey_title | default: 'பயணம்' }}
+            </h3>
+            <div class="design-story__step-indicator">2</div>
+          </div>
+
+          <div class="design-story__journey-timeline">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'journey_step' -%}
+                <div class="journey-step" {{ block.shopify_attributes }}>
+                  <div class="journey-step__marker">
+                    <div class="journey-step__dot"></div>
+                    <div class="journey-step__line"></div>
+                  </div>
+                  <div class="journey-step__content">
+                    <h4 class="journey-step__title tamil-text">{{ block.settings.step_title }}</h4>
+                    <div class="journey-step__description rte tamil-text">{{ block.settings.step_description }}</div>
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <!-- Cultural Heritage Section -->
+        <div class="design-story__section temple-arch kolam-border">
+          <div class="design-story__section-header">
+            <h3 class="design-story__section-title tamil-text cultural-accent">
+              {{ section.settings.heritage_title | default: 'கலாச்சார பாரம்பரியம்' }}
+            </h3>
+            <div class="design-story__step-indicator">3</div>
+          </div>
+
+          <div class="design-story__heritage-grid">
+            {%- if section.settings.heritage_image != blank -%}
+              <div class="heritage-image">
+                <img
+                  srcset="
+                    {%- if section.settings.heritage_image.width >= 165 -%}{{ section.settings.heritage_image | image_url: width: 165 }} 165w,{%- endif -%}
+                    {%- if section.settings.heritage_image.width >= 360 -%}{{ section.settings.heritage_image | image_url: width: 360 }} 360w,{%- endif -%}
+                    {%- if section.settings.heritage_image.width >= 535 -%}{{ section.settings.heritage_image | image_url: width: 535 }} 535w,{%- endif -%}
+                    {{ section.settings.heritage_image | image_url }} {{ section.settings.heritage_image.width }}w
+                  "
+                  src="{{ section.settings.heritage_image | image_url: width: 535 }}"
+                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                  alt="{{ section.settings.heritage_image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ section.settings.heritage_image.width }}"
+                  height="{{ section.settings.heritage_image.height }}"
+                  class="design-story__heritage-img"
+                >
+              </div>
+            {%- endif -%}
+
+            <div class="heritage-content">
+              <div class="design-story__heritage-text rte tamil-text">
+                {{ section.settings.heritage_content | default: '<p>இந்த வடிவமைப்பு தமிழ் கலாச்சாரத்தின் அழகிய மரபுகளை கௌரவிக்கிறது.</p>' }}
+              </div>
+
+              <div class="heritage-elements">
+                {%- if section.settings.cultural_element_1 != blank -%}
+                  <span class="heritage-tag cultural-button">{{ section.settings.cultural_element_1 }}</span>
+                {%- endif -%}
+                {%- if section.settings.cultural_element_2 != blank -%}
+                  <span class="heritage-tag cultural-button">{{ section.settings.cultural_element_2 }}</span>
+                {%- endif -%}
+                {%- if section.settings.cultural_element_3 != blank -%}
+                  <span class="heritage-tag cultural-button">{{ section.settings.cultural_element_3 }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modern Twist Section -->
+        <div class="design-story__section temple-arch kolam-border">
+          <div class="design-story__section-header">
+            <h3 class="design-story__section-title tamil-text cultural-accent">
+              {{ section.settings.modern_title | default: 'நவீன திருப்பம்' }}
+            </h3>
+            <div class="design-story__step-indicator">4</div>
+          </div>
+
+          <div class="design-story__modern-content">
+            <div class="design-story__modern-text rte tamil-text">
+              {{ section.settings.modern_content | default: '<p>பாரம்பரிய தமிழ் வடிவமைப்புகளை நவீன பாணியில் மீண்டும் உருவாக்குகிறோம்.</p>' }}
+            </div>
+
+            {%- if section.settings.call_to_action != blank -%}
+              <div class="design-story__cta">
+                <a href="{{ section.settings.cta_link | default: '#' }}" class="cultural-button kolam-glow">
+                  {{ section.settings.call_to_action }}
+                </a>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .design-story {
+    padding: calc(var(--ravan-spacing) * 2) 0;
+    background: linear-gradient(135deg,
+      rgba(255, 153, 51, 0.02) 0%,
+      rgba(255, 215, 0, 0.02) 50%,
+      rgba(75, 0, 130, 0.02) 100%);
+  }
+
+  .design-story__wrapper {
+    text-align: center;
+  }
+
+  .design-story__subtitle {
+    font-size: var(--ravan-subheading-size);
+    color: var(--ravan-saffron);
+    margin-bottom: calc(var(--ravan-spacing) * 2);
+  }
+
+  .design-story__journey {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--ravan-spacing) * 2);
+    align-items: center;
+  }
+
+  .design-story__section {
+    width: 100%;
+    max-width: 800px;
+    padding: calc(var(--ravan-spacing) * 1.5);
+    text-align: left;
+    transition: transform 0.3s ease;
+  }
+
+  .design-story__section:hover {
+    transform: translateY(-3px);
+  }
+
+  .design-story__section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .design-story__step-indicator {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--ravan-gold);
+    color: var(--ravan-maroon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  .design-story__image-wrapper {
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .design-story__image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .design-story__content {
+    margin-top: 1rem;
+  }
+
+  .design-story__text {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .design-story__cultural-term {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .tamil-term {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .translation {
+    font-size: 1rem;
+    color: var(--ravan-saffron);
+    font-style: italic;
+  }
+
+  .design-story__journey-timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .journey-step {
+    position: relative;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .journey-step__marker {
+    position: absolute;
+    left: -2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .journey-step__dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--ravan-saffron);
+    border: 3px solid var(--ravan-gold);
+    z-index: 2;
+  }
+
+  .journey-step__line {
+    width: 2px;
+    height: 100%;
+    background: var(--ravan-gold);
+    opacity: 0.5;
+  }
+
+  .journey-step:last-child .journey-step__line {
+    display: none;
+  }
+
+  .journey-step__content {
+    flex: 1;
+  }
+
+  .journey-step__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ravan-maroon);
+    margin-bottom: 0.5rem;
+  }
+
+  .journey-step__description {
+    line-height: 1.5;
+  }
+
+  .design-story__heritage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .heritage-image img {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .heritage-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .heritage-elements {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .heritage-tag {
+    background: var(--ravan-terracotta);
+    color: var(--ravan-white);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .design-story__modern-content {
+    text-align: center;
+  }
+
+  .design-story__cta {
+    margin-top: 1.5rem;
+  }
+
+  /* Mobile Responsive */
+  @media screen and (max-width: 749px) {
+    .design-story {
+      padding: var(--ravan-spacing) 0;
+    }
+
+    .design-story__section {
+      padding: 1rem;
+    }
+
+    .design-story__journey-timeline {
+      padding-left: 1.5rem;
+    }
+
+    .design-story__heritage-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .tamil-term {
+      font-size: 1.2rem;
+    }
+
+    .design-story__step-indicator {
+      width: 30px;
+      height: 30px;
+      font-size: 1rem;
+    }
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .design-story__step-indicator {
+      background: var(--ravan-saffron);
+      color: var(--ravan-maroon);
+    }
+
+    .journey-step__dot {
+      background: var(--ravan-gold);
+      border-color: var(--ravan-saffron);
+    }
+
+    .heritage-tag {
+      background: var(--ravan-saffron);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Design Story",
+  "class": "section",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "வடிவமைப்பு கதை",
+      "label": "t:sections.design-story.settings.title.label"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "default": "ஒவ்வொரு வடிவமைப்பின் பின்னணையிலும் ஒரு கதை உள்ளது",
+      "label": "t:sections.design-story.settings.subtitle.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.design-story.settings.header_inspiration.content"
+    },
+    {
+      "type": "text",
+      "id": "inspiration_title",
+      "default": "ஈர்ப்பு",
+      "label": "t:sections.design-story.settings.inspiration_title.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "inspiration_image",
+      "label": "t:sections.design-story.settings.inspiration_image.label"
+    },
+    {
+      "type": "richtext",
+      "id": "inspiration_content",
+      "default": "<p>இந்த வடிவமைப்பின் ஈர்ப்பு தமிழ் பாரம்பரியத்திலிருந்து பெறப்பட்டது. பண்டைய கோவில் கட்டிடக்கலை, பாரம்பரிய நெசவுகலை, மற்றும் தமிழ் கலை வடிவங்கள் இந்த வடிவமைப்புக்கு உத்வாகமாக உள்ளன.</p>",
+        "label": "t:sections.design-story.settings.inspiration_content.label"
+    },
+    {
+      "type": "text",
+      "id": "inspiration_tamil_term",
+      "default": "கலை ஈர்ப்பு",
+      "label": "t:sections.design-story.settings.inspiration_tamil_term.label"
+    },
+    {
+      "type": "text",
+      "id": "inspiration_translation",
+      "default": "Artistic Inspiration",
+      "label": "t:sections.design-story.settings.inspiration_translation.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.design-story.settings.header_journey.content"
+    },
+    {
+      "type": "text",
+      "id": "journey_title",
+      "default": "பயணம்",
+      "label": "t:sections.design-story.settings.journey_title.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.design-story.settings.header_heritage.content"
+    },
+    {
+      "type": "text",
+      "id": "heritage_title",
+      "default": "கலாச்சார பாரம்பரியம்",
+      "label": "t:sections.design-story.settings.heritage_title.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "heritage_image",
+      "label": "t:sections.design-story.settings.heritage_image.label"
+    },
+    {
+      "type": "richtext",
+      "id": "heritage_content",
+      "default": "<p>இந்த வடிவமைப்பு தமிழ் கலாச்சாரத்தின் அழகிய மரபுகளை கௌரவிக்கிறது. பண்டைய கலைகள் மற்றும் கலாச்சார நடைமுறைகள் இந்த நவீன வடிவமைப்பில் பிரதிபலிக்கின்றன.</p>",
+        "label": "t:sections.design-story.settings.heritage_content.label"
+    },
+    {
+      "type": "text",
+      "id": "cultural_element_1",
+      "default": "கோலம்",
+      "label": "t:sections.design-story.settings.cultural_element_1.label"
+    },
+    {
+      "type": "text",
+      "id": "cultural_element_2",
+      "default": "கோவில்",
+      "label": "t:sections.design-story.settings.cultural_element_2.label"
+    },
+    {
+      "type": "text",
+      "id": "cultural_element_3",
+      "default": "பட்டு",
+      "label": "t:sections.design-story.settings.cultural_element_3.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.design-story.settings.header_modern.content"
+    },
+    {
+      "type": "text",
+      "id": "modern_title",
+      "default": "நவீன திருப்பம்",
+      "label": "t:sections.design-story.settings.modern_title.label"
+    },
+    {
+      "type": "richtext",
+      "id": "modern_content",
+      "default": "<p>பாரம்பரிய தமிழ் வடிவமைப்புகளை நவீன பாணியில் மீண்டும் உருவாக்குகிறோம். இந்த அணுகுமுறை நமது வேர்களை மதிப்பித்து, எதிர்காலத்தைப் பார்க்கிறது.</p>",
+        "label": "t:sections.design-story.settings.modern_content.label"
+    },
+    {
+      "type": "text",
+      "id": "call_to_action",
+      "default": "இந்த கதையை ஆராயுங்கள்",
+      "label": "t:sections.design-story.settings.call_to_action.label"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "t:sections.design-story.settings.cta_link.label"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.all.colors.accent_1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.all.colors.accent_2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.all.colors.background_1.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.all.colors.background_2.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.all.colors.inverse.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.all.colors.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "journey_step",
+      "name": "t:sections.design-story.blocks.journey_step.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "t:sections.design-story.blocks.journey_step.settings.step_title.label",
+          "default": "வடிவமைப்பு ஆராய்ச்சி"
+        },
+        {
+          "type": "richtext",
+          "id": "step_description",
+          "label": "t:sections.design-story.blocks.journey_step.settings.step_description.label",
+          "default": "<p>பாரம்பரிய தமிழ் கலைகளை ஆராய்ந்து நவீன வடிவமைப்பு கூறுகளை அடையாளம்.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.design-story.presets.name",
+      "category": "Ravan Fashion",
+      "blocks": [
+        {
+          "type": "journey_step"
+        },
+        {
+          "type": "journey_step"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

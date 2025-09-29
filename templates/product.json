@@ -205,12 +205,45 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "cultural-product-details": {
+      "type": "cultural-product-details",
+      "settings": {
+        "heading": "Cultural Heritage",
+        "subheading": "Discover the story behind our designs",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "show_cultural_story": true,
+        "story_title": "The Cultural Journey",
+        "story_content": "<p>Each design tells a story of Tamil heritage, blending traditional elements with contemporary fashion. Our products are born from centuries of artistic tradition, passed down through generations of skilled artisans.</p>",
+        "show_traditional_elements": true,
+        "elements_title": "Traditional Elements",
+        "element_1_name": "கோலம்",
+        "element_1_translation": "Kolam Pattern",
+        "element_1_description": "Traditional geometric patterns that symbolize prosperity and welcome",
+        "element_2_name": "பட்டு",
+        "element_2_translation": "Silk Weaving",
+        "element_2_description": "Ancient art of silk weaving passed down through generations",
+        "element_3_name": "கோவில்",
+        "element_3_translation": "Temple Architecture",
+        "element_3_description": "Inspired by the intricate carvings and structures of Tamil temples",
+        "show_craftsmanship": true,
+        "craftsmanship_title": "Artisan Craftsmanship",
+        "craftsmanship_content": "<p>Crafted by skilled artisans using traditional techniques passed down through generations. Each piece is a testament to the enduring legacy of Tamil craftsmanship.</p>",
+        "show_regional_info": true,
+        "regional_title": "Regional Heritage",
+        "regional_location": "Tamil Nadu, India",
+        "regional_content": "<p>Rooted in the rich cultural heritage of Tamil Nadu, our designs celebrate the region's artistic traditions and cultural diversity.</p>",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
     "image-with-text",
     "multicolumn",
+    "cultural-product-details",
     "related-products"
   ]
 }

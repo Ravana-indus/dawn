@@ -1,0 +1,366 @@
+/**
+ * RAVAN FASHION - CULTURAL SPOTLIGHT SECTION STYLES
+ * Tamil Cultural Elements Grid Layout
+ * Mobile-First Responsive Design
+ */
+
+.cultural-spotlight {
+  padding: var(--ravan-spacing) 0;
+  background: linear-gradient(135deg,
+    rgba(255, 153, 51, 0.02) 0%,
+    rgba(255, 215, 0, 0.02) 50%,
+    rgba(75, 0, 130, 0.02) 100%);
+}
+
+.cultural-spotlight__wrapper {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.cultural-spotlight__heading {
+  font-family: var(--ravan-tamil-font);
+  font-size: var(--ravan-heading-size);
+  font-weight: 700;
+  color: var(--ravan-maroon);
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.cultural-spotlight__heading::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ravan-saffron), var(--ravan-gold));
+  border-radius: 2px;
+}
+
+.cultural-spotlight__description {
+  font-family: var(--ravan-tamil-font);
+  font-size: var(--ravan-subheading-size);
+  color: var(--ravan-saffron);
+  margin-bottom: calc(var(--ravan-spacing) * 1.5);
+  line-height: 1.6;
+}
+
+.cultural-spotlight__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--columns-desktop, 3), 1fr);
+  gap: var(--ravan-spacing);
+  margin-top: calc(var(--ravan-spacing) * 1.5);
+}
+
+.cultural-spotlight__item {
+  background: var(--ravan-white);
+  border: 2px solid var(--ravan-saffron);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: left;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cultural-spotlight__item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 25% 25%, var(--ravan-gold) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.cultural-spotlight__item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 153, 51, 0.2);
+  border-color: var(--ravan-gold);
+}
+
+.cultural-spotlight__image-wrapper {
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cultural-spotlight__image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 153, 51, 0.1), rgba(255, 215, 0, 0.1));
+  pointer-events: none;
+}
+
+.cultural-spotlight__image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.cultural-spotlight__item:hover .cultural-spotlight__image {
+  transform: scale(1.05);
+}
+
+.cultural-spotlight__content {
+  position: relative;
+  z-index: 1;
+}
+
+.cultural-spotlight__tamil-term {
+  font-family: var(--ravan-tamil-font);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--ravan-maroon);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.cultural-spotlight__english-translation {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--ravan-saffron);
+  font-style: italic;
+}
+
+.cultural-spotlight__item-description {
+  font-family: var(--ravan-tamil-font);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: var(--ravan-black);
+}
+
+.cultural-spotlight__link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--ravan-maroon);
+  font-family: var(--ravan-tamil-font);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.cultural-spotlight__link::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--ravan-saffron);
+  transition: width 0.3s ease;
+}
+
+.cultural-spotlight__link:hover::before {
+  width: 100%;
+}
+
+.cultural-spotlight__link .icon-wrap {
+  transition: transform 0.3s ease;
+}
+
+.cultural-spotlight__link:hover .icon-wrap {
+  transform: translateX(3px);
+}
+
+.cultural-spotlight__button-wrapper {
+  margin-top: calc(var(--ravan-spacing) * 2);
+}
+
+.cultural-spotlight__button {
+  background: linear-gradient(135deg, var(--ravan-saffron), var(--ravan-terracotta));
+  color: var(--ravan-white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-family: var(--ravan-tamil-font);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.cultural-spotlight__button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.cultural-spotlight__button:hover::before {
+  left: 100%;
+}
+
+.cultural-spotlight__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 153, 51, 0.3);
+}
+
+.cultural-spotlight__button--secondary {
+  background: transparent;
+  color: var(--ravan-saffron);
+  border: 2px solid var(--ravan-saffron);
+}
+
+.cultural-spotlight__button--secondary:hover {
+  background: var(--ravan-saffron);
+  color: var(--ravan-white);
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 749px) {
+  .cultural-spotlight {
+    padding: 1rem 0;
+  }
+
+  .cultural-spotlight__grid {
+    grid-template-columns: repeat(var(--columns-mobile, 1), 1fr);
+    gap: 1rem;
+  }
+
+  .cultural-spotlight__wrapper {
+    padding: 0 0.5rem;
+  }
+
+  .cultural-spotlight__heading {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .cultural-spotlight__description {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .cultural-spotlight__item {
+    padding: 1rem;
+  }
+
+  .cultural-spotlight__tamil-term {
+    font-size: 1.1rem;
+  }
+
+  .cultural-spotlight__english-translation {
+    font-size: 0.9rem;
+  }
+
+  .cultural-spotlight__button-wrapper {
+    margin-top: 1.5rem;
+  }
+
+  .cultural-spotlight__button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Tablet Responsive */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .cultural-spotlight__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cultural-spotlight__item {
+    padding: 1.25rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .cultural-spotlight__item {
+    background: linear-gradient(135deg, rgba(255, 179, 102, 0.1), rgba(255, 224, 102, 0.1));
+    border-color: var(--ravan-saffron);
+  }
+
+  .cultural-spotlight__tamil-term {
+    color: var(--ravan-saffron);
+  }
+
+  .cultural-spotlight__english-translation {
+    color: var(--ravan-gold);
+  }
+
+  .cultural-spotlight__item-description {
+    color: var(--ravan-white);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .cultural-spotlight__item {
+    border-width: 3px;
+    border-color: var(--ravan-maroon);
+  }
+
+  .cultural-spotlight__button {
+    border: 3px solid var(--ravan-saffron);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cultural-spotlight__item,
+  .cultural-spotlight__image,
+  .cultural-spotlight__link,
+  .cultural-spotlight__button {
+    transition: none;
+  }
+
+  .cultural-spotlight__item:hover {
+    transform: none;
+  }
+
+  .cultural-spotlight__button::before {
+    animation: none;
+  }
+}
+
+/* Accessibility enhancements */
+.cultural-spotlight__item:focus-within {
+  outline: 3px solid var(--ravan-saffron);
+  outline-offset: 2px;
+}
+
+.cultural-spotlight__link:focus {
+  outline: 2px solid var(--ravan-saffron);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .cultural-spotlight {
+    background: none;
+    padding: 1rem 0;
+  }
+
+  .cultural-spotlight__item {
+    border: 1px solid var(--ravan-black);
+    break-inside: avoid;
+  }
+
+  .cultural-spotlight__button {
+    display: none;
+  }
+}

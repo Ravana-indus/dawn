@@ -1,0 +1,523 @@
+{%- comment -%}
+  RAVAN FASHION - OPTIMIZED CULTURAL SPOTLIGHT SECTION
+  Performance-optimized cultural showcase with lazy loading
+  Optimizations:
+  - Lazy loading for images
+  - Intersection Observer for animations
+  - Critical CSS for above-the-fold content
+  - Event delegation for interactions
+  - Efficient grid layouts
+{%- endcomment -%}
+
+{{ 'section-cultural-spotlight-optimized.css' | asset_url | stylesheet_tag }}
+{{ 'cultural-spotlight-optimized.js' | asset_url | script_tag | defer }}
+
+<div class="cultural-spotlight-optimized color-{{ section.settings.color_scheme }} gradient{% if section.settings.title == blank %} no-heading{% endif %}"
+     data-section-id="{{ section.id }}"
+     data-section-type="cultural-spotlight">
+
+  <div class="page-width">
+    <div class="cultural-spotlight__wrapper">
+      {%- unless section.settings.title == blank -%}
+        <div class="cultural-spotlight__header scroll-animate">
+          <h2 class="cultural-spotlight__heading tamil-heading inline-richtext">
+            {{ section.settings.title }}
+          </h2>
+        </div>
+      {%- endunless -%}
+
+      {%- unless section.settings.description == blank -%}
+        <div class="cultural-spotlight__description scroll-animate scroll-animate-delay-1 rte tamil-text">
+          {{ section.settings.description }}
+        </div>
+      {%- endunless -%}
+
+      <div class="cultural-spotlight__grid"
+           data-grid-columns="{{ section.settings.columns_desktop }}"
+           data-grid-columns-mobile="{{ section.settings.columns_mobile }}"
+           itemscope
+           itemtype="http://schema.org/CollectionPage">
+
+        {%- for block in section.blocks -%}
+          <div class="cultural-spotlight__item lazy-load-item"
+               {{ block.shopify_attributes }}
+               data-item-index="{{ forloop.index0 }}"
+               itemprop="mainEntity"
+               itemtype="http://schema.org/CreativeWork">
+
+            {%- if block.settings.image != blank -%}
+              <div class="cultural-spotlight__image-wrapper image-lazy-wrapper">
+                <img
+                  class="cultural-spotlight__image lazy-image"
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg=="
+                  data-src="{{ block.settings.image | image_url: width: 1500 }}"
+                  data-srcset="
+                    {%- if block.settings.image.width >= 165 -%}{{ block.settings.image | image_url: width: 165 }} 165w,{%- endif -%}
+                    {%- if block.settings.image.width >= 360 -%}{{ block.settings.image | image_url: width: 360 }} 360w,{%- endif -%}
+                    {%- if block.settings.image.width >= 535 -%}{{ block.settings.image | image_url: width: 535 }} 535w,{%- endif -%}
+                    {%- if block.settings.image.width >= 750 -%}{{ block.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+                    {%- if block.settings.image.width >= 1070 -%}{{ block.settings.image | image_url: width: 1070 }} 1070w,{%- endif -%}
+                    {%- if block.settings.image.width >= 1500 -%}{{ block.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                    {{ block.settings.image | image_url }} {{ block.settings.image.width }}w
+                  "
+                  data-sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                  alt="{{ block.settings.image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                  itemprop="image">
+
+                <!-- Low quality image placeholder -->
+                <div class="image-placeholder">
+                  {{ block.settings.image | image_url: width: 50, height: 50 | image_tag:
+                    class: 'placeholder-image',
+                    loading: 'eager'
+                  }}
+                </div>
+              </div>
+            {%- endif -%}
+
+            <div class="cultural-spotlight__content">
+              {%- if block.settings.tamil_term != blank -%}
+                <h3 class="cultural-spotlight__tamil-term tamil-text cultural-accent" itemprop="name">
+                  {{ block.settings.tamil_term }}
+                </h3>
+              {%- endif -%}
+
+              {%- if block.settings.english_translation != blank -%}
+                <h4 class="cultural-spotlight__english-translation" itemprop="alternateName">
+                  {{ block.settings.english_translation }}
+                </h4>
+              {%- endif -%}
+
+              {%- if block.settings.description != blank -%}
+                <div class="cultural-spotlight__item-description rte tamil-text" itemprop="description">
+                  {{ block.settings.description }}
+                </div>
+              {%- endif -%}
+
+              {%- if block.settings.link_label != blank -%}
+                <a
+                  href="{{ block.settings.link }}"
+                  class="cultural-spotlight__link cultural-button {% if block.settings.link_style == 'secondary' %}cultural-button--secondary{% endif %}"
+                  data-action="navigate-link"
+                  data-link-url="{{ block.settings.link }}"
+                  {% if block.settings.link_target == '_blank' %}target="_blank" rel="noopener noreferrer"{% endif %}
+                  itemprop="url">
+                  {{ block.settings.link_label }}
+                  <span class="icon-wrap" aria-hidden="true">&nbsp;→</span>
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.button_label != blank -%}
+        <div class="cultural-spotlight__button-wrapper scroll-animate scroll-animate-delay-2">
+          <a
+            href="{{ section.settings.button_link }}"
+            class="cultural-spotlight__button cultural-button{% if section.settings.button_style_secondary %} cultural-button--secondary{% endif %}"
+            {% if section.settings.button_target == '_blank' %}target="_blank" rel="noopener noreferrer"{% endif %}
+            data-action="navigate-link"
+            data-link-url="{{ section.settings.button_link }}"
+            itemprop="url">
+            {{ section.settings.button_label | escape }}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<!-- Performance Optimized CSS -->
+<style>
+  .cultural-spotlight-optimized {
+    padding: var(--ravan-spacing) 0;
+    contain: layout style paint;
+  }
+
+  .cultural-spotlight__wrapper {
+    text-align: center;
+    will-change: auto;
+  }
+
+  .cultural-spotlight__grid {
+    display: grid;
+    gap: var(--ravan-spacing);
+    margin-top: calc(var(--ravan-spacing) * 1.5);
+    align-items: start;
+    contain: layout;
+  }
+
+  .cultural-spotlight__item {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: var(--ravan-border-radius);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+    contain: content;
+  }
+
+  .cultural-spotlight__item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 153, 51, 0.2);
+  }
+
+  .image-lazy-wrapper {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    aspect-ratio: 16/9;
+  }
+
+  .lazy-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .lazy-image.loaded {
+    opacity: 1;
+  }
+
+  .image-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(10px);
+    opacity: 0.3;
+  }
+
+  .placeholder-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cultural-spotlight__content {
+    padding: 1.5rem;
+    contain: content;
+  }
+
+  .cultural-spotlight__tamil-term {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--ravan-maroon);
+  }
+
+  .cultural-spotlight__english-translation {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--ravan-saffron);
+  }
+
+  .cultural-spotlight__item-description {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: var(--ravan-black);
+  }
+
+  .cultural-spotlight__link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--ravan-saffron);
+    transition: color 0.3s ease;
+  }
+
+  .cultural-spotlight__link:hover {
+    color: var(--ravan-maroon);
+  }
+
+  .cultural-spotlight__button-wrapper {
+    margin-top: calc(var(--ravan-spacing) * 2);
+  }
+
+  /* Scroll animations */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scroll-animate-delay-1 {
+    transition-delay: 0.1s;
+  }
+
+  .scroll-animate-delay-2 {
+    transition-delay: 0.2s;
+  }
+
+  /* Mobile Responsive */
+  @media screen and (max-width: 749px) {
+    .cultural-spotlight__grid {
+      gap: 1rem;
+    }
+
+    .cultural-spotlight__item {
+      margin-bottom: 1rem;
+    }
+
+    .cultural-spotlight__content {
+      padding: 1rem;
+    }
+
+    .cultural-spotlight__tamil-term {
+      font-size: 1.1rem;
+    }
+
+    .cultural-spotlight__english-translation {
+      font-size: 0.9rem;
+    }
+
+    .cultural-spotlight__button-wrapper {
+      margin-top: var(--ravan-spacing);
+    }
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .cultural-spotlight__item {
+      background: rgba(128, 0, 32, 0.1);
+    }
+
+    .cultural-spotlight__tamil-term {
+      color: var(--ravan-saffron);
+    }
+
+    .cultural-spotlight__english-translation {
+      color: var(--ravan-gold);
+    }
+
+    .image-lazy-wrapper {
+      background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .cultural-spotlight__item {
+      border: 2px solid var(--ravan-maroon);
+    }
+
+    .cultural-spotlight__link {
+      text-decoration: underline;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .cultural-spotlight__item,
+    .scroll-animate,
+    .lazy-image {
+      transition: none;
+      animation: none;
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    .cultural-spotlight__item {
+      break-inside: avoid;
+      border: 1px solid #000;
+    }
+
+    .cultural-spotlight__link::after {
+      content: ' (' attr(href) ')';
+      font-size: 0.8em;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Cultural Spotlight (Optimized)",
+  "class": "section",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "தமிழ் கலாச்சார சிறப்பு",
+      "label": "t:sections.cultural-spotlight.settings.title.label"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>எங்களது தமிழ் கலாச்சார பாரம்பரியத்தை ஆராயுங்கள்</p>",
+      "label": "t:sections.cultural-spotlight.settings.description.label"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.cultural-spotlight.settings.columns_desktop.label"
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1,
+      "label": "t:sections.cultural-spotlight.settings.columns_mobile.label"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.all.colors.accent_1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.all.colors.accent_2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.all.colors.background_1.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.all.colors.background_2.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.all.colors.inverse.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.all.colors.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.cultural-spotlight.settings.header_button.content"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "மேலும் ஆராயுங்கள்",
+      "label": "t:sections.cultural-spotlight.settings.button_label.label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.cultural-spotlight.settings.button_link.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary",
+      "default": false,
+      "label": "t:sections.cultural-spotlight.settings.button_style_secondary.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "cultural_item",
+      "name": "t:sections.cultural-spotlight.blocks.cultural_item.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.cultural-spotlight.blocks.cultural_item.settings.image.label"
+        },
+        {
+          "type": "text",
+          "id": "tamil_term",
+          "label": "t:sections.cultural-spotlight.blocks.cultural_item.settings.tamil_term.label",
+          "default": "கோலம்"
+        },
+        {
+          "type": "text",
+          "id": "english_translation",
+          "label": "t:sections.cultural-spotlight.blocks.cultural_item.settings.english_translation.label",
+          "default": "Kolam Pattern"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "t:sections.cultural-spotlight.blocks.cultural_item.settings.description.label",
+          "default": "<p>கோலம் என்பது தமிழ்நாட்டின் பாரம்பரிய கலை வடிவமாகும்.</p>"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.cultural-spotlight.blocks.cultural_item.settings.header_link.content"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "t:sections.cultural-spotlight.blocks.cultural_item.settings.link_label.label",
+          "default": "மேலும் அறிக"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.cultural-spotlight.blocks.cultural_item.settings.link.label"
+        },
+        {
+          "type": "select",
+          "id": "link_style",
+          "options": [
+            {
+              "value": "primary",
+              "label": "t:sections.cultural-spotlight.blocks.cultural_item.settings.link_style.options__1.label"
+            },
+            {
+              "value": "secondary",
+              "label": "t:sections.cultural-spotlight.blocks.cultural_item.settings.link_style.options__2.label"
+            }
+          ],
+          "default": "primary",
+          "label": "t:sections.cultural-spotlight.blocks.cultural_item.settings.link_style.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "link_target",
+          "default": false,
+          "label": "t:sections.cultural-spotlight.blocks.cultural_item.settings.link_target.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cultural Spotlight (Optimized)",
+      "category": "Ravan Fashion - Optimized",
+      "blocks": [
+        {
+          "type": "cultural_item"
+        },
+        {
+          "type": "cultural_item"
+        },
+        {
+          "type": "cultural_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

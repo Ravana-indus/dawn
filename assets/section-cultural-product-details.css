@@ -1,0 +1,382 @@
+/**
+ * RAVAN FASHION - CULTURAL PRODUCT DETAILS SECTION STYLES
+ * Tamil Cultural Elements for Product Enhancement
+ * Mobile-First Responsive Design
+ */
+
+.cultural-product-details {
+  --cultural-spacing: 2rem;
+  --cultural-border-radius: 12px;
+  --cultural-transition: all 0.3s ease;
+}
+
+.cultural-product-details__wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--cultural-spacing);
+}
+
+/* Header Styles */
+.cultural-product-details__header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.cultural-product-details__heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--ravan-maroon) 0%, var(--ravan-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cultural-product-details__subheading {
+  font-size: 1.25rem;
+  color: var(--ravan-saffron);
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* Cultural Story Section */
+.cultural-product-details__story {
+  background: linear-gradient(135deg, rgba(255, 153, 51, 0.05) 0%, rgba(139, 0, 0, 0.05) 100%);
+  border-radius: var(--cultural-border-radius);
+  padding: 2rem;
+  margin-bottom: 3rem;
+  border: 1px solid rgba(255, 153, 51, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.cultural-product-details__story::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ravan-maroon) 0%, var(--ravan-gold) 50%, var(--ravan-maroon) 100%);
+}
+
+.cultural-story__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.cultural-story__icon .tamil-term {
+  font-size: 2rem;
+  background: var(--ravan-gold);
+  color: var(--ravan-maroon);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.cultural-story__title {
+  font-size: 1.75rem;
+  color: var(--ravan-maroon);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.cultural-story__text {
+  line-height: 1.7;
+  color: var(--text-color);
+}
+
+/* Traditional Elements Grid */
+.cultural-product-details__elements {
+  margin-bottom: 3rem;
+}
+
+.cultural-elements__title {
+  font-size: 1.75rem;
+  color: var(--ravan-maroon);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.cultural-elements__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.cultural-element__item {
+  background: white;
+  border-radius: var(--cultural-border-radius);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid rgba(255, 153, 51, 0.2);
+  transition: var(--cultural-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.cultural-element__item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ravan-gold), transparent);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.cultural-element__item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(255, 153, 51, 0.2);
+  border-color: var(--ravan-gold);
+}
+
+.cultural-element__item:hover::before {
+  transform: scaleX(1);
+}
+
+.cultural-element__icon {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  width: 60px;
+  margin: 0 auto 1rem;
+  background: linear-gradient(135deg, var(--ravan-saffron) 0%, var(--ravan-gold) 100%);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.cultural-element__content h4 {
+  font-size: 1.25rem;
+  color: var(--ravan-maroon);
+  margin-bottom: 0.5rem;
+  font-family: 'Tamil Sangam MN', 'Noto Sans Tamil', sans-serif;
+  font-weight: 600;
+}
+
+.cultural-element__english {
+  font-size: 0.9rem;
+  color: var(--ravan-saffron);
+  margin-bottom: 0.75rem;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.cultural-element__description {
+  line-height: 1.6;
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+/* Craftsmanship Section */
+.cultural-product-details__craftsmanship {
+  background: linear-gradient(135deg, rgba(139, 0, 0, 0.03) 0%, rgba(255, 153, 51, 0.03) 100%);
+  border-radius: var(--cultural-border-radius);
+  padding: 2rem;
+  margin-bottom: 3rem;
+  border: 1px solid rgba(139, 0, 0, 0.2);
+}
+
+.craftsmanship__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.craftsmanship__badge {
+  background: var(--ravan-maroon);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.craftsmanship__badge .tamil-term.small {
+  font-size: 0.85rem;
+}
+
+.craftsmanship__title {
+  font-size: 1.75rem;
+  color: var(--ravan-maroon);
+  font-weight: 600;
+  flex: 1;
+}
+
+.craftsmanship__content {
+  line-height: 1.7;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.craftsmanship__image {
+  border-radius: var(--cultural-border-radius);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.craftsmanship__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: var(--cultural-transition);
+}
+
+.craftsmanship__image:hover .craftsmanship__img {
+  transform: scale(1.05);
+}
+
+/* Regional Heritage Section */
+.cultural-product-details__regional {
+  background: linear-gradient(135deg, rgba(75, 0, 130, 0.03) 0%, rgba(255, 153, 51, 0.03) 100%);
+  border-radius: var(--cultural-border-radius);
+  padding: 2rem;
+  border: 1px solid rgba(75, 0, 130, 0.2);
+}
+
+.regional-info__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.regional-info__title {
+  font-size: 1.75rem;
+  color: var(--ravan-indigo);
+  font-weight: 600;
+  margin: 0;
+}
+
+.regional-info__location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ravan-saffron);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.regional-info__content {
+  line-height: 1.7;
+  color: var(--text-color);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 749px) {
+  .cultural-product-details__wrapper {
+    padding: 1rem;
+  }
+
+  .cultural-product-details__heading {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cultural-product-details__subheading {
+    font-size: 1rem;
+  }
+
+  .cultural-elements__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .cultural-element__item {
+    padding: 1.5rem;
+  }
+
+  .cultural-story__title,
+  .cultural-elements__title,
+  .craftsmanship__title,
+  .regional-info__title {
+    font-size: 1.5rem;
+  }
+
+  .craftsmanship__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .regional-info__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cultural-product-details__story,
+  .cultural-product-details__craftsmanship,
+  .cultural-product-details__regional {
+    padding: 1.5rem;
+  }
+
+  .cultural-element__item {
+    padding: 1rem;
+  }
+
+  .cultural-story__icon .tamil-term {
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cultural-product-details__story,
+.cultural-element__item,
+.cultural-product-details__craftsmanship,
+.cultural-product-details__regional {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.cultural-element__item:nth-child(1) { animation-delay: 0.1s; }
+.cultural-element__item:nth-child(2) { animation-delay: 0.2s; }
+.cultural-element__item:nth-child(3) { animation-delay: 0.3s; }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .cultural-element__item,
+  .craftsmanship__img,
+  .cultural-product-details__story,
+  .cultural-product-details__craftsmanship,
+  .cultural-product-details__regional {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (forced-colors: active) {
+  .cultural-product-details__story,
+  .cultural-element__item,
+  .cultural-product-details__craftsmanship,
+  .cultural-product-details__regional {
+    border: 2px solid CanvasText;
+  }
+}

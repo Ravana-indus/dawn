@@ -1,0 +1,602 @@
+/**
+ * RAVAN FASHION - NON-CRITICAL CSS (ASYNC LOADED)
+ * Below-the-fold styles for enhanced visual experience
+ * Loaded asynchronously to prevent render-blocking
+ *
+ * Performance Optimizations:
+ * - Complex patterns and animations loaded after critical path
+ * - GPU-accelerated transforms and animations
+ * - Advanced cultural design elements
+ * - Sophisticated hover effects and transitions
+ */
+
+/* ===== CULTURAL PATTERN DEFINITIONS ===== */
+.kolam-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.kolam-pattern::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 25% 25%,
+    transparent 20%,
+    rgba(255, 153, 51, 0.1) 25%,
+    transparent 30%,
+    rgba(255, 215, 0, 0.1) 35%,
+    transparent 40%);
+  background-size: 50px 50px;
+  animation: kolam-dance 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes kolam-dance {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.temple-arch {
+  position: relative;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(255, 153, 51, 0.05) 50%,
+    transparent 100%);
+  border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+}
+
+.temple-arch::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(255, 153, 51, 0.2);
+  border-radius: inherit;
+}
+
+.silk-texture {
+  position: relative;
+  overflow: hidden;
+}
+
+.silk-texture::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 215, 0, 0.03) 2px,
+    rgba(255, 215, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+/* ===== ADVANCED TYPOGRAPHY ===== */
+@font-face {
+  font-family: 'Noto Sans Tamil';
+  src: local('Noto Sans Tamil');
+  font-display: swap;
+}
+
+.tamil-term {
+  font-family: 'Noto Sans Tamil', system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.tamil-text {
+  font-family: 'Noto Sans Tamil', system-ui, -apple-system, sans-serif;
+  line-height: 1.8;
+}
+
+.cultural-accent {
+  position: relative;
+  display: inline-block;
+}
+
+.cultural-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg,
+    var(--ravan-saffron),
+    var(--ravan-gold),
+    var(--ravan-terracotta));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.cultural-accent:hover::after {
+  transform: scaleX(1);
+}
+
+/* ===== SOPHISTICATED ANIMATIONS ===== */
+@keyframes cultural-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes kolam-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 153, 51, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  }
+}
+
+@keyframes temple-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes silk-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-cultural-fade {
+  animation: cultural-fade-in 0.8s ease-out forwards;
+}
+
+.animate-kolam-glow {
+  animation: kolam-glow 3s ease-in-out infinite;
+}
+
+.animate-temple-pulse {
+  animation: temple-pulse 4s ease-in-out infinite;
+}
+
+.animate-silk-shimmer {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%);
+  background-size: 200% 100%;
+  animation: silk-shimmer 3s ease-in-out infinite;
+}
+
+/* ===== ADVANCED HOVER EFFECTS ===== */
+.cultural-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cultural-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.cultural-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.kolam-border {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.kolam-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg,
+    var(--ravan-saffron),
+    var(--ravan-gold),
+    var(--ravan-terracotta),
+    var(--ravan-indigo),
+    var(--ravan-saffron));
+  background-size: 400% 400%;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: border-gradient 8s ease infinite;
+}
+
+.kolam-border:hover::before {
+  opacity: 1;
+}
+
+@keyframes border-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== COMPLEX GRADIENT BACKGROUNDS ===== */
+.cultural-gradient-1 {
+  background: linear-gradient(135deg,
+    rgba(255, 153, 51, 0.1) 0%,
+    rgba(255, 215, 0, 0.05) 25%,
+    rgba(75, 0, 130, 0.05) 50%,
+    rgba(226, 114, 91, 0.05) 75%,
+    rgba(255, 153, 51, 0.1) 100%);
+}
+
+.cultural-gradient-2 {
+  background: radial-gradient(ellipse at center,
+    rgba(255, 153, 51, 0.08) 0%,
+    rgba(255, 215, 0, 0.04) 40%,
+    transparent 70%);
+}
+
+.temple-gradient {
+  background: linear-gradient(180deg,
+    rgba(128, 0, 32, 0.05) 0%,
+    rgba(255, 153, 51, 0.03) 50%,
+    rgba(255, 215, 0, 0.02) 100%);
+}
+
+/* ===== ADVANCED GRID LAYOUTS ===== */
+.cultural-grid {
+  display: grid;
+  gap: var(--ravan-spacing);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: start;
+}
+
+.cultural-masonry {
+  column-count: 3;
+  column-gap: var(--ravan-spacing);
+}
+
+.cultural-masonry > * {
+  break-inside: avoid;
+  margin-bottom: var(--ravan-spacing);
+}
+
+/* ===== INTERACTIVE ELEMENTS ===== */
+.cultural-accordion {
+  border: var(--ravan-border-width) solid var(--ravan-saffron);
+  border-radius: var(--ravan-border-radius);
+  overflow: hidden;
+  margin-bottom: var(--ravan-spacing);
+}
+
+.cultural-accordion-header {
+  background: rgba(255, 153, 51, 0.05);
+  padding: var(--ravan-spacing);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s ease;
+}
+
+.cultural-accordion-header:hover {
+  background: rgba(255, 153, 51, 0.1);
+}
+
+.cultural-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding: 0 var(--ravan-spacing);
+}
+
+.cultural-accordion.active .cultural-accordion-content {
+  max-height: 500px;
+  padding: var(--ravan-spacing);
+}
+
+.cultural-tabs {
+  display: flex;
+  border-bottom: 2px solid var(--ravan-saffron);
+  margin-bottom: var(--ravan-spacing);
+}
+
+.cultural-tab {
+  padding: var(--ravan-spacing) calc(var(--ravan-spacing) * 1.5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--ravan-tamil-font);
+  font-weight: 600;
+  color: var(--ravan-saffron);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.cultural-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--ravan-saffron);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.cultural-tab.active::after {
+  transform: scaleX(1);
+}
+
+.cultural-tab:hover {
+  color: var(--ravan-maroon);
+}
+
+/* ===== ADVANCED FORM ELEMENTS ===== */
+.cultural-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23FF9933' d='M6 8L0 2h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.cultural-textarea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: var(--ravan-tamil-font);
+}
+
+.cultural-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--ravan-saffron);
+}
+
+.cultural-radio {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--ravan-saffron);
+}
+
+/* ===== CULTURAL ICONS =====}
+.cultural-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.icon-kolam {
+  background: linear-gradient(45deg, var(--ravan-saffron), var(--ravan-gold));
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z'/%3E%3C/svg%3E");
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z'/%3E%3C/svg%3E");
+}
+
+.icon-temple {
+  background: var(--ravan-maroon);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zM3 13.5v8h2v-8H3zm4 0v8h2v-8H7zm4 0v8h2v-8h-2zm4 0v8h2v-8h-2zm4 0v8h2v-8h-2z'/%3E%3C/svg%3E");
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zM3 13.5v8h2v-8H3zm4 0v8h2v-8H7zm4 0v8h2v-8h-2zm4 0v8h2v-8h-2zm4 0v8h2v-8h-2z'/%3E%3C/svg%3E");
+}
+
+.icon-silk {
+  background: var(--ravan-terracotta);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-3.5l6-4.5-6-4.5v9z'/%3E%3C/svg%3E");
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-3.5l6-4.5-6-4.5v9z'/%3E%3C/svg%3E");
+}
+
+/* ===== ADVANCED UTILITIES ===== */
+.text-gradient {
+  background: linear-gradient(45deg, var(--ravan-saffron), var(--ravan-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-shadow-cultural {
+  text-shadow: 2px 2px 4px rgba(128, 0, 32, 0.3);
+}
+
+.box-shadow-cultural {
+  box-shadow: 0 8px 32px rgba(255, 153, 51, 0.2);
+}
+
+.backdrop-blur {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.clip-path-kolam {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.clip-path-temple {
+  clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+}
+
+/* ===== SCROLL-TRIGGERED ANIMATIONS ===== */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-animate-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-animate-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ===== LOADING STATES ===== */
+.loading-skeleton {
+  background: linear-gradient(90deg,
+    rgba(255, 153, 51, 0.1) 25%,
+    rgba(255, 215, 0, 0.2) 50%,
+    rgba(255, 153, 51, 0.1) 75%);
+  background-size: 200% 100%;
+  animation: loading-skeleton 1.5s infinite;
+}
+
+@keyframes loading-skeleton {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ===== DARK MODE ENHANCEMENTS ===== */
+@media (prefers-color-scheme: dark) {
+  .cultural-gradient-1 {
+    background: linear-gradient(135deg,
+      rgba(255, 153, 51, 0.2) 0%,
+      rgba(255, 215, 0, 0.1) 25%,
+      rgba(75, 0, 130, 0.1) 50%,
+      rgba(226, 114, 91, 0.1) 75%,
+      rgba(255, 153, 51, 0.2) 100%);
+  }
+
+  .temple-gradient {
+    background: linear-gradient(180deg,
+      rgba(255, 153, 51, 0.1) 0%,
+      rgba(255, 215, 0, 0.05) 50%,
+      rgba(75, 0, 130, 0.05) 100%);
+  }
+
+  .kolam-border::before {
+    opacity: 0.3;
+  }
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+@media (prefers-contrast: high) {
+  .cultural-button {
+    border: 3px solid var(--ravan-maroon);
+  }
+
+  .kolam-border {
+    border-width: 3px;
+  }
+
+  .cultural-accent::after {
+    height: 3px;
+    background: var(--ravan-maroon);
+  }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .cultural-button::before,
+  .kolam-border::before,
+  .kolam-pattern::before,
+  .animate-cultural-fade,
+  .animate-kolam-glow,
+  .animate-temple-pulse,
+  .animate-silk-shimmer,
+  .loading-skeleton {
+    animation: none;
+    transition: none;
+  }
+
+  .scroll-animate,
+  .scroll-animate-left,
+  .scroll-animate-right {
+    transition: none;
+  }
+}
+
+/* ===== MOBILE-ENHANCED STYLES ===== */
+@media screen and (max-width: 749px) {
+  .cultural-masonry {
+    column-count: 1;
+  }
+
+  .cultural-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cultural-tabs {
+    flex-wrap: wrap;
+  }
+
+  .cultural-tab {
+    flex: 1 1 auto;
+    min-width: 120px;
+  }
+
+  .icon-kolam,
+  .icon-temple,
+  .icon-silk {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .cultural-button,
+  .cultural-accordion,
+  .cultural-tabs,
+  .kolam-pattern::before,
+  .silk-texture::before,
+  .animate-cultural-fade,
+  .animate-kolam-glow,
+  .animate-temple-pulse,
+  .animate-silk-shimmer {
+    display: none;
+  }
+
+  .kolam-border {
+    border: 1px solid var(--ravan-black);
+  }
+
+  .text-gradient {
+    -webkit-text-fill-color: var(--ravan-maroon);
+  }
+}

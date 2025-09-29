@@ -1,0 +1,131 @@
+/* Ravan Fashion - Performance Optimized CSS */
+/* Critical CSS for above-the-fold content */
+
+/* Critical CSS Variables - Load First */
+:root {
+  /* Critical Colors */
+  --tamil-saffron: #FF9933;
+  --tamil-maroon: #800020;
+  --tamil-white: #FFFFFF;
+  --tamil-gold: #FFD700;
+
+  /* Critical Spacing */
+  --critical-padding: 1rem;
+  --critical-margin: 1rem;
+}
+
+/* Critical Layout - Above the Fold */
+.critical-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--critical-padding);
+}
+
+/* Critical Typography */
+.tamil-heading-critical {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  color: var(--tamil-maroon);
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: var(--critical-margin);
+}
+
+/* Critical Button Styles */
+.tamil-button-critical {
+  background: linear-gradient(135deg, var(--tamil-saffron) 0%, var(--tamil-maroon) 100%);
+  color: var(--tamil-white);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  font-family: 'Noto Sans Tamil', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.tamil-button-critical:hover {
+  transform: translateY(-2px);
+}
+
+/* Temple Arch - Critical */
+.temple-arch-critical {
+  background: linear-gradient(135deg, var(--tamil-gold) 0%, var(--tamil-saffron) 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
+  padding: 2rem 0;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.temple-arch-critical h2 {
+  color: var(--tamil-white);
+  font-family: 'Noto Sans Tamil', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Performance Optimizations */
+.cultural-spotlight,
+.design-story,
+.drop-countdown {
+  contain: layout;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Image Optimization */
+.cultural-image img,
+.story-image img,
+.countdown-image img {
+  content-visibility: auto;
+  contain-intrinsic-size: 400px 300px;
+}
+
+/* CSS Containment for Better Performance */
+.cultural-item {
+  contain: layout style;
+}
+
+.journey-step {
+  contain: layout style;
+}
+
+.countdown-item {
+  contain: layout style;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .tamil-button-critical,
+  .cultural-item,
+  .journey-step,
+  .countdown-item {
+    transition: none;
+  }
+}
+
+/* Critical Mobile Styles */
+@media (max-width: 768px) {
+  .critical-layout {
+    padding: 0 0.75rem;
+  }
+
+  .temple-arch-critical {
+    padding: 1.5rem 0;
+  }
+
+  .tamil-button-critical {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Print Optimization */
+@media print {
+  .cultural-spotlight,
+  .design-story,
+  .drop-countdown {
+    background: white !important;
+    color: black !important;
+  }
+}

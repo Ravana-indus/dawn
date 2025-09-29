@@ -1,0 +1,481 @@
+{{ 'section-drop-countdown.css' | asset_url | stylesheet_tag }}
+{{ 'drop-countdown.js' | asset_url | script_tag | defer }}
+
+<div class="drop-countdown color-{{ section.settings.color_scheme }} gradient{% if section.settings.title == blank %} no-heading{% endif %}">
+  <div class="page-width">
+    <div class="drop-countdown__wrapper temple-arch kolam-border tamil-pattern">
+      {%- unless section.settings.title == blank -%}
+        <h2 class="drop-countdown__heading tamil-heading inline-richtext">
+          {{ section.settings.title }}
+        </h2>
+      {%- endunless -%}
+
+      {%- unless section.settings.subtitle == blank -%}
+        <p class="drop-countdown__subtitle tamil-text">
+          {{ section.settings.subtitle }}
+        </p>
+      {%- endunless -%}
+
+      {%- if section.settings.drop_image != blank -%}
+        <div class="drop-countdown__image-wrapper silk-texture">
+          <img
+            srcset="
+              {%- if section.settings.drop_image.width >= 165 -%}{{ section.settings.drop_image | image_url: width: 165 }} 165w,{%- endif -%}
+              {%- if section.settings.drop_image.width >= 360 -%}{{ section.settings.drop_image | image_url: width: 360 }} 360w,{%- endif -%}
+              {%- if section.settings.drop_image.width >= 535 -%}{{ section.settings.drop_image | image_url: width: 535 }} 535w,{%- endif -%}
+              {%- if section.settings.drop_image.width >= 750 -%}{{ section.settings.drop_image | image_url: width: 750 }} 750w,{%- endif -%}
+              {%- if section.settings.drop_image.width >= 1070 -%}{{ section.settings.drop_image | image_url: width: 1070 }} 1070w,{%- endif -%}
+              {{ section.settings.drop_image | image_url }} {{ section.settings.drop_image.width }}w
+            "
+            src="{{ section.settings.drop_image | image_url: width: 750 }}"
+            sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+            alt="{{ section.settings.drop_image.alt | escape }}"
+            loading="lazy"
+            width="{{ section.settings.drop_image.width }}"
+            height="{{ section.settings.drop_image.height }}"
+            class="drop-countdown__image"
+          >
+        </div>
+      {%- endif -%}
+
+      <div class="drop-countdown__content">
+        {%- if section.settings.drop_name != blank -%}
+          <h3 class="drop-countdown__drop-name tamil-text cultural-highlight">
+            {{ section.settings.drop_name }}
+          </h3>
+        {%- endif -%}
+
+        {%- if section.settings.drop_description != blank -%}
+          <div class="drop-countdown__description rte tamil-text">
+            {{ section.settings.drop_description }}
+          </div>
+        {%- endif -%}
+
+        <!-- Countdown Timer -->
+        <div class="drop-countdown__timer" id="countdown-{{ section.id }}" data-drop-date="{{ section.settings.drop_date }}">
+          <div class="countdown__blocks">
+            <div class="countdown__block">
+              <div class="countdown__number days">00</div>
+              <div class="countdown__label tamil-text">{{ 'sections.drop_countdown.days' | t }}</div>
+            </div>
+            <div class="countdown__separator">:</div>
+            <div class="countdown__block">
+              <div class="countdown__number hours">00</div>
+              <div class="countdown__label tamil-text">{{ 'sections.drop_countdown.hours' | t }}</div>
+            </div>
+            <div class="countdown__separator">:</div>
+            <div class="countdown__block">
+              <div class="countdown__number minutes">00</div>
+              <div class="countdown__label tamil-text">{{ 'sections.drop_countdown.minutes' | t }}</div>
+            </div>
+            <div class="countdown__separator">:</div>
+            <div class="countdown__block">
+              <div class="countdown__number seconds">00</div>
+              <div class="countdown__label tamil-text">{{ 'sections.drop_countdown.seconds' | t }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email Notification Form -->
+        {%- if section.settings.show_email_signup -%}
+          <div class="drop-countdown__email">
+            {%- form 'customer', id: 'DropCountdownForm' -%}
+              <input type="hidden" name="contact[tags]" value="prospect, drop countdown">
+
+              <div class="email-form__wrapper">
+                <div class="email-form__field">
+                  <input
+                    id="Email-{{ section.id }}"
+                    type="email"
+                    name="contact[email]"
+                    class="email-form__input cultural-input"
+                    value="{{ form.email }}"
+                    aria-required="true"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    autocomplete="email"
+                    {% if form.errors %}
+                      autofocus
+                      aria-invalid="true"
+                      aria-describedby="ContactFooter-error"
+                    {% endif %}
+                    placeholder="{{ 'sections.drop_countdown.email_placeholder' | t }}"
+                    required
+                  >
+                  <label class="visually-hidden" for="Email-{{ section.id }}">
+                    {{ 'sections.drop_countdown.email_label' | t }}
+                  </label>
+                </div>
+
+                <button type="submit" class="email-form__submit cultural-button" name="commit">
+                  {{ 'sections.drop_countdown.subscribe' | t }}
+                </button>
+              </div>
+
+              {%- if form.errors -%}
+                <small class="email-form__error" id="ContactFooter-error">
+                  {%- for field in form.errors -%}
+                    {{ field }}
+                    {%- if forloop.last == false -%}, {%- endif -%}
+                  {%- endfor -%}
+                </small>
+              {%- endif -%}
+
+              {%- if form.posted_successfully? -%}
+                <div class="email-form__success">
+                  {{ 'sections.drop_countdown.success_message' | t }}
+                </div>
+              {%- endif -%}
+            {%- endform -%}
+          </div>
+        {%- endif -%}
+
+        <!-- Additional Information -->
+        {%- if section.settings.additional_info != blank -%}
+          <div class="drop-countdown__info rte tamil-text">
+            {{ section.settings.additional_info }}
+          </div>
+        {%- endif -%}
+
+        <!-- Status Badge -->
+        <div class="drop-countdown__status" id="drop-status-{{ section.id }}">
+          <span class="status-badge cultural-button">{{ 'sections.drop_countdown.coming_soon' | t }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .drop-countdown {
+    padding: var(--ravan-spacing) 0;
+  }
+
+  .drop-countdown__wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: calc(var(--ravan-spacing) * 1.5);
+    background: linear-gradient(135deg,
+      rgba(255, 153, 51, 0.05) 0%,
+      rgba(255, 215, 0, 0.05) 50%,
+      rgba(75, 0, 130, 0.05) 100%);
+  }
+
+  .drop-countdown__subtitle {
+    font-size: var(--ravan-subheading-size);
+    color: var(--ravan-saffron);
+    margin-bottom: var(--ravan-spacing);
+  }
+
+  .drop-countdown__image-wrapper {
+    margin: var(--ravan-spacing) 0;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .drop-countdown__image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  .drop-countdown__content {
+    margin-top: var(--ravan-spacing);
+  }
+
+  .drop-countdown__drop-name {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .drop-countdown__description {
+    margin-bottom: calc(var(--ravan-spacing) * 1.5);
+    line-height: 1.6;
+  }
+
+  .drop-countdown__timer {
+    margin: calc(var(--ravan-spacing) * 2) 0;
+  }
+
+  .countdown__blocks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .countdown__block {
+    text-align: center;
+    min-width: 80px;
+  }
+
+  .countdown__number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--ravan-maroon);
+    font-family: var(--ravan-tamil-font);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .countdown__label {
+    font-size: 0.9rem;
+    color: var(--ravan-saffron);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .countdown__separator {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--ravan-gold);
+    margin: 0 0.5rem;
+  }
+
+  .email-form__wrapper {
+    display: flex;
+    max-width: 400px;
+    margin: var(--ravan-spacing) auto 0;
+    gap: 0.5rem;
+  }
+
+  .email-form__field {
+    flex: 1;
+  }
+
+  .email-form__input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--ravan-saffron);
+    border-radius: 25px;
+    font-family: var(--ravan-tamil-font);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .email-form__input:focus {
+    border-color: var(--ravan-gold);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+    outline: none;
+  }
+
+  .email-form__submit {
+    background: linear-gradient(135deg, var(--ravan-saffron), var(--ravan-terracotta));
+    color: var(--ravan-white);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-family: var(--ravan-tamil-font);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .email-form__submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 153, 51, 0.3);
+  }
+
+  .email-form__error {
+    color: var(--ravan-maroon);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  .email-form__success {
+    color: var(--ravan-gold);
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+
+  .drop-countdown__info {
+    margin: var(--ravan-spacing) 0;
+    line-height: 1.6;
+  }
+
+  .drop-countdown__status {
+    margin-top: var(--ravan-spacing);
+  }
+
+  .status-badge {
+    background: var(--ravan-gold);
+    color: var(--ravan-maroon);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* Mobile Responsive */
+  @media screen and (max-width: 749px) {
+    .countdown__blocks {
+      gap: 0.5rem;
+    }
+
+    .countdown__block {
+      min-width: 60px;
+    }
+
+    .countdown__number {
+      font-size: 1.8rem;
+    }
+
+    .countdown__separator {
+      font-size: 1.5rem;
+      margin: 0 0.25rem;
+    }
+
+    .email-form__wrapper {
+      flex-direction: column;
+    }
+
+    .email-form__submit {
+      width: 100%;
+    }
+
+    .drop-countdown__drop-name {
+      font-size: 1.5rem;
+    }
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .countdown__number {
+      color: var(--ravan-saffron);
+    }
+
+    .status-badge {
+      background: var(--ravan-saffron);
+      color: var(--ravan-maroon);
+    }
+  }
+
+  /* Animations */
+  @keyframes countdown-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .countdown__block {
+    animation: countdown-pulse 2s ease-in-out infinite;
+  }
+
+  .countdown__block:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .countdown__block:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  .countdown__block:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+
+  .countdown__block:nth-child(8) {
+    animation-delay: 0.8s;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Drop Countdown",
+  "class": "section",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "டிராப் கவுண்டவுன்",
+      "label": "t:sections.drop_countdown.settings.title.label"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "default": "அடுத்த வெளியீட்டிற்கான காத்திருப்பு",
+      "label": "t:sections.drop_countdown.settings.subtitle.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "drop_image",
+      "label": "t:sections.drop_countdown.settings.drop_image.label"
+    },
+    {
+      "type": "text",
+      "id": "drop_name",
+      "default": "தமிழ் பாரம்பரிய சேகரிப்பு",
+      "label": "t:sections.drop_countdown.settings.drop_name.label"
+    },
+    {
+      "type": "richtext",
+      "id": "drop_description",
+      "default": "<p>எங்களது அடுத்த டிராப் விரைவில் வருகிறது! பாரம்பரிய தமிழ் வடிவமைப்புகளுடன் கூடிய புதிய ஸ்ட்ரீட்வியர் சேகரிப்பு.</p>",
+      "label": "t:sections.drop_countdown.settings.drop_description.label"
+    },
+    {
+      "type": "text",
+      "id": "drop_date",
+      "label": "t:sections.drop_countdown.settings.drop_date.label",
+      "info": "t:sections.drop_countdown.settings.drop_date.info",
+      "placeholder": "YYYY-MM-DD HH:MM:SS"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_email_signup",
+      "default": true,
+      "label": "t:sections.drop_countdown.settings.show_email_signup.label"
+    },
+    {
+      "type": "richtext",
+      "id": "additional_info",
+      "default": "<p>வரம்பிற்குட்பட உரிமைகள் பெறும் முதல் 100 வாடிக்களுக்கு சிறப்பு பரிசுகள்!</p>",
+      "label": "t:sections.drop_countdown.settings.additional_info.label"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.all.colors.accent_1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.all.colors.accent_2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.all.colors.background_1.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.all.colors.background_2.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.all.colors.inverse.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.all.colors.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.drop_countdown.presets.name",
+      "category": "Ravan Fashion"
+    }
+  ]
+}
+{% endschema %}

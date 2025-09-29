@@ -736,6 +736,48 @@
       {{ product | structured_data }}
     </script>
   </div>
+
+  {%- if section.settings.enable_design_story -%}
+    <div class="product-design-story" style="margin-top: 4rem;">
+      <div class="page-width">
+        <div class="temple-arch">
+          <h2 style="color: var(--tamil-maroon); text-align: center;">{{ section.settings.design_story_title }}</h2>
+        </div>
+
+        <div class="design-story-content" style="background: linear-gradient(135deg, var(--tamil-terracotta) 0%, var(--tamil-saffron) 100%); padding: 3rem; border-radius: 12px; color: var(--tamil-white); text-align: center;">
+          <p class="tamil-subheading" style="font-size: 1.2rem; margin-bottom: 2rem;">
+            {{ section.settings.design_story_subtitle }}
+          </p>
+
+          <div class="design-story-text" style="max-width: 800px; margin: 0 auto;">
+            <p class="tamil-body-text" style="color: var(--tamil-white); line-height: 1.8;">
+              {{ section.settings.design_story_content }}
+            </p>
+          </div>
+
+          {%- if section.settings.design_story_image != blank -%}
+            <div style="margin: 2rem 0;">
+              <img src="{{ section.settings.design_story_image | image_url: width: 800 }}"
+                   alt="{{ section.settings.design_story_image.alt | escape }}"
+                   loading="lazy"
+                   width="{{ section.settings.design_story_image.width }}"
+                   height="{{ section.settings.design_story_image.height }}"
+                   style="width: 100%; max-width: 600px; height: 300px; object-fit: cover; border-radius: 8px; margin: 0 auto; display: block;">
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.learn_more_link != blank -%}
+            <div style="margin-top: 2rem;">
+              <a href="{{ section.settings.learn_more_link }}" class="tamil-button">
+                {{ 'sections.ravan_fashion.design_story.learn_more' | t | default: 'மேலும் அறிய' }}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
 </product-info>
 
 {% schema %}
@@ -2262,6 +2304,44 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Design Story"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_design_story",
+      "default": false,
+      "label": "Enable Design Story Section"
+    },
+    {
+      "type": "text",
+      "id": "design_story_title",
+      "default": "வடிவமைப்பு கதை",
+      "label": "Design Story Title"
+    },
+    {
+      "type": "text",
+      "id": "design_story_subtitle",
+      "default": "இந்த ஆடையின் பின்னணி",
+      "label": "Design Story Subtitle"
+    },
+    {
+      "type": "richtext",
+      "id": "design_story_content",
+      "default": "<p>இந்த ஆடை தமிழ் கலாச்சாரத்தின் அழகிய பாரம்பரியங்களிலிருந்து ஈர்ப்பு பெற்றது.</p>",
+      "label": "Design Story Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "design_story_image",
+      "label": "Design Story Image"
+    },
+    {
+      "type": "url",
+      "id": "learn_more_link",
+      "label": "Learn More Link"
     }
   ]
 }

@@ -1,0 +1,526 @@
+/**
+ * RAVAN FASHION - OPTIMIZED CULTURAL SPOTLIGHT CSS
+ * Performance-optimized cultural showcase section
+ *
+ * Optimizations:
+ * - CSS containment for better rendering
+ * - Hardware acceleration for smooth animations
+ * - Efficient hover states
+ * - Mobile-first responsive design
+ * - Dark mode and accessibility support
+ */
+
+/* ===== BASE STYLES ===== */
+.cultural-spotlight-optimized {
+  padding: var(--ravan-spacing) 0;
+  contain: layout style paint;
+  will-change: auto;
+}
+
+.cultural-spotlight__wrapper {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ===== GRID LAYOUT OPTIMIZATIONS ===== */
+.cultural-spotlight__grid {
+  display: grid;
+  gap: var(--ravan-spacing);
+  margin-top: calc(var(--ravan-spacing) * 1.5);
+  align-items: start;
+  contain: layout;
+}
+
+.cultural-spotlight__grid[data-grid-columns="1"] {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.cultural-spotlight__grid[data-grid-columns="2"] {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.cultural-spotlight__grid[data-grid-columns="3"] {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.cultural-spotlight__grid[data-grid-columns="4"] {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ===== ITEM STYLES ===== */
+.cultural-spotlight__item {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--ravan-border-radius);
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  contain: content;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.cultural-spotlight__item:hover {
+  transform: translateY(-5px) translateZ(0);
+  box-shadow: 0 10px 30px rgba(255, 153, 51, 0.2);
+}
+
+/* ===== IMAGE OPTIMIZATIONS ===== */
+.image-lazy-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+  aspect-ratio: 16/9;
+  contain: strict;
+}
+
+.lazy-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  will-change: opacity;
+}
+
+.lazy-image.loaded {
+  opacity: 1;
+}
+
+.image-placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(10px);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.placeholder-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== CONTENT STYLES ===== */
+.cultural-spotlight__content {
+  padding: 1.5rem;
+  contain: content;
+}
+
+.cultural-spotlight__tamil-term {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--ravan-maroon);
+  font-family: var(--ravan-tamil-font);
+  line-height: 1.3;
+}
+
+.cultural-spotlight__english-translation {
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--ravan-saffron);
+  line-height: 1.4;
+}
+
+.cultural-spotlight__item-description {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: var(--ravan-black);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+.cultural-spotlight__item-description p {
+  margin: 0 0 0.5rem 0;
+}
+
+.cultural-spotlight__item-description p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== LINK STYLES ===== */
+.cultural-spotlight__link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--ravan-saffron);
+  transition: color 0.3s ease, transform 0.2s ease;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  position: relative;
+}
+
+.cultural-spotlight__link:hover {
+  color: var(--ravan-maroon);
+  transform: translateX(2px);
+}
+
+.cultural-spotlight__link .icon-wrap {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.cultural-spotlight__link:hover .icon-wrap {
+  transform: translateX(3px);
+}
+
+/* ===== BUTTON STYLES ===== */
+.cultural-spotlight__button-wrapper {
+  margin-top: calc(var(--ravan-spacing) * 2);
+  text-align: center;
+}
+
+.cultural-spotlight__button {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--ravan-saffron), var(--ravan-terracotta));
+  color: var(--ravan-white);
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cultural-spotlight__button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.cultural-spotlight__button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.cultural-spotlight__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 153, 51, 0.3);
+}
+
+.cultural-spotlight__button.cultural-button--secondary {
+  background: transparent;
+  color: var(--ravan-saffron);
+  border: 2px solid var(--ravan-saffron);
+}
+
+.cultural-spotlight__button.cultural-button--secondary:hover {
+  background: var(--ravan-saffron);
+  color: var(--ravan-white);
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-animate-delay-1 {
+  transition-delay: 0.1s;
+}
+
+.scroll-animate-delay-2 {
+  transition-delay: 0.2s;
+}
+
+/* ===== HEADER STYLES ===== */
+.cultural-spotlight__header {
+  margin-bottom: 1rem;
+}
+
+.cultural-spotlight__heading {
+  font-size: var(--ravan-heading-size);
+  color: var(--ravan-maroon);
+  margin: 0;
+  font-weight: 700;
+  font-family: var(--ravan-tamil-font);
+}
+
+.cultural-spotlight__description {
+  margin-bottom: calc(var(--ravan-spacing) * 1.5);
+  color: var(--ravan-black);
+  line-height: 1.6;
+}
+
+/* ===== LOADING STATES ===== */
+.lazy-load-item {
+  position: relative;
+}
+
+.lazy-load-item.loading .image-lazy-wrapper {
+  background: linear-gradient(90deg,
+    rgba(255, 153, 51, 0.1) 25%,
+    rgba(255, 215, 0, 0.2) 50%,
+    rgba(255, 153, 51, 0.1) 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media screen and (max-width: 749px) {
+  .cultural-spotlight__grid {
+    gap: 1rem;
+  }
+
+  .cultural-spotlight__grid[data-grid-columns-mobile="1"] {
+    grid-template-columns: 1fr;
+  }
+
+  .cultural-spotlight__grid[data-grid-columns-mobile="2"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cultural-spotlight__grid[data-grid-columns-mobile="3"] {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cultural-spotlight__item {
+    margin-bottom: 1rem;
+  }
+
+  .cultural-spotlight__content {
+    padding: 1rem;
+  }
+
+  .cultural-spotlight__tamil-term {
+    font-size: 1.1rem;
+  }
+
+  .cultural-spotlight__english-translation {
+    font-size: 0.9rem;
+  }
+
+  .cultural-spotlight__item-description {
+    font-size: 0.9rem;
+  }
+
+  .cultural-spotlight__button-wrapper {
+    margin-top: var(--ravan-spacing);
+  }
+
+  .cultural-spotlight__button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ===== TABLET STYLES ===== */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .cultural-spotlight__grid[data-grid-columns="4"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cultural-spotlight__grid[data-grid-columns="3"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+@media (prefers-color-scheme: dark) {
+  .cultural-spotlight__item {
+    background: rgba(128, 0, 32, 0.1);
+    border: 1px solid rgba(255, 153, 51, 0.2);
+  }
+
+  .cultural-spotlight__tamil-term {
+    color: var(--ravan-saffron);
+  }
+
+  .cultural-spotlight__english-translation {
+    color: var(--ravan-gold);
+  }
+
+  .cultural-spotlight__item-description {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .image-lazy-wrapper {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  }
+
+  .cultural-spotlight__button.cultural-button--secondary {
+    border-color: var(--ravan-gold);
+    color: var(--ravan-gold);
+  }
+
+  .cultural-spotlight__button.cultural-button--secondary:hover {
+    background: var(--ravan-gold);
+    color: var(--ravan-black);
+  }
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+@media (prefers-contrast: high) {
+  .cultural-spotlight__item {
+    border: 2px solid var(--ravan-maroon);
+    background: var(--ravan-white);
+  }
+
+  .cultural-spotlight__link {
+    text-decoration: underline;
+    font-weight: 700;
+  }
+
+  .cultural-spotlight__button {
+    border: 3px solid var(--ravan-maroon);
+    background: var(--ravan-maroon);
+    color: var(--ravan-white);
+  }
+
+  .cultural-spotlight__button:hover {
+    background: var(--ravan-saffron);
+    border-color: var(--ravan-saffron);
+  }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .cultural-spotlight__item,
+  .scroll-animate,
+  .lazy-image,
+  .cultural-spotlight__button,
+  .cultural-spotlight__link {
+    transition: none;
+    animation: none;
+    will-change: auto;
+  }
+
+  .cultural-spotlight__item:hover {
+    transform: none;
+  }
+
+  .lazy-load-item.loading .image-lazy-wrapper {
+    animation: none;
+    background: #f0f0f0;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .cultural-spotlight__item {
+    break-inside: avoid;
+    border: 1px solid #000;
+    background: white;
+    box-shadow: none;
+  }
+
+  .cultural-spotlight__link::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8em;
+    color: #000;
+  }
+
+  .cultural-spotlight__button {
+    display: none;
+  }
+
+  .image-lazy-wrapper {
+    background: white;
+    border: 1px solid #ccc;
+  }
+}
+
+/* ===== FOCUS STYLES ===== */
+.cultural-spotlight__item:focus-within {
+  outline: 3px solid var(--ravan-saffron);
+  outline-offset: 2px;
+}
+
+.cultural-spotlight__link:focus {
+  outline: 2px solid var(--ravan-saffron);
+  outline-offset: 2px;
+}
+
+.cultural-spotlight__button:focus {
+  outline: 3px solid var(--ravan-saffron);
+  outline-offset: 2px;
+}
+
+/* ===== KEYBOARD NAVIGATION ===== */
+.cultural-spotlight__item:focus-visible {
+  transform: scale(1.02);
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+.cultural-spotlight__item {
+  content-visibility: auto;
+  contain-intrinsic-size: 400px;
+}
+
+.cultural-spotlight__grid {
+  content-visibility: auto;
+  contain-intrinsic-size: 600px;
+}
+
+/* Use GPU acceleration for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize image loading with eager loading for above-the-fold images */
+.cultural-spotlight__item:first-child .lazy-image {
+  loading: eager;
+  fetchpriority: high;
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip to content link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--ravan-maroon);
+  color: var(--ravan-white);
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+  top: 0;
+}
