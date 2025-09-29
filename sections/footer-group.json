@@ -37,6 +37,8 @@
         "newsletter_enable": true,
         "newsletter_heading": "Subscribe to our emails",
         "show_social": true,
+        "heritage_badge": "தமிழ் ஒளி",
+        "heritage_message": "Elevating Tamil heritage with modern luxe silhouettes for every diaspora icon.",
         "enable_country_selector": false,
         "enable_language_selector": false,
         "payment_enable": true,
