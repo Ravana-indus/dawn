@@ -288,6 +288,16 @@
       </a>
     </div>
   </header>
+  {% if section.settings.tamil_tagline != blank or section.settings.tagline_translation != blank %}
+    <div class="header__tamil-strip">
+      {% if section.settings.tamil_tagline != blank %}
+        <span class="header__tamil-strip-primary">{{ section.settings.tamil_tagline | escape }}</span>
+      {% endif %}
+      {% if section.settings.tagline_translation != blank %}
+        <span class="header__tamil-strip-secondary">{{ section.settings.tagline_translation | escape }}</span>
+      {% endif %}
+    </div>
+  {% endif %}
 </{{ header_tag }}>
 
 {%- if settings.cart_type == "notification" -%}
@@ -558,6 +568,22 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Tamil identity"
+    },
+    {
+      "type": "text",
+      "id": "tamil_tagline",
+      "label": "Tamil tagline",
+      "default": "தமிழர் செழிப்பை அணியுங்கள்"
+    },
+    {
+      "type": "text",
+      "id": "tagline_translation",
+      "label": "English translation",
+      "default": "Wear Tamil heritage with modern luxe"
     },
     {
       "type": "color_scheme",

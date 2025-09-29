@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap');
+
 :root {
   --alpha-button-background: 1;
   --alpha-button-border: 1;
@@ -6,6 +8,302 @@
   --focused-base-outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
+  --r1-primary: 112, 59, 247;
+  --r1-primary-dark: 74, 36, 201;
+  --r1-secondary: 183, 133, 255;
+  --r1-muted: 121, 102, 186;
+  --r1-accent: 255, 196, 66;
+  --r1-surface: 248, 245, 255;
+  --r1-surface-dark: 32, 24, 56;
+  --r1-ink: 27, 17, 46;
+  --r1-gradient: linear-gradient(120deg, rgba(var(--r1-primary), 1) 0%, rgba(var(--r1-secondary), 1) 60%, rgba(134, 201, 255, 1) 100%);
+}
+
+body {
+  font-family: 'Manrope', var(--font-body-family);
+  background-color: rgb(var(--r1-surface));
+  background-image: radial-gradient(circle at 5% 15%, rgba(var(--r1-secondary), 0.25) 0, transparent 55%),
+    radial-gradient(circle at 95% 10%, rgba(var(--r1-primary), 0.18) 0, transparent 50%),
+    linear-gradient(180deg, rgba(var(--r1-surface), 1) 0%, rgba(237, 228, 255, 1) 35%, rgba(var(--r1-surface), 1) 100%);
+  color: rgba(var(--r1-ink), 0.92);
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 6rem auto auto auto;
+  width: min(65rem, 90vw);
+  height: min(65rem, 90vw);
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 70%);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: auto auto 0 50%;
+  width: min(85rem, 110vw);
+  height: min(85rem, 110vw);
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(var(--r1-primary), 0.12) 0, rgba(var(--r1-primary), 0) 65%);
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+h1,
+h2,
+h3,
+.h1,
+.h2,
+.h3,
+.heading,
+.section-header__heading,
+.footer-block__heading {
+  font-family: 'Clash Display', 'Manrope', var(--font-heading-family);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: rgb(var(--r1-ink));
+}
+
+.link,
+a {
+  color: rgb(var(--r1-primary));
+  transition: color var(--duration-short) ease, text-shadow var(--duration-short) ease;
+}
+
+.link:hover,
+.link:focus,
+a:hover,
+a:focus {
+  color: rgb(var(--r1-secondary));
+  text-shadow: 0 0.1rem 0.2rem rgba(var(--r1-secondary), 0.25);
+}
+
+.button,
+button,
+.shopify-payment-button__button,
+.shopify-payment-button__button--unbranded,
+.customer button.button,
+.customer button {
+  font-family: 'Manrope', var(--font-heading-family);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  background: var(--r1-gradient);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding-inline: 2.4rem;
+  padding-block: 1.3rem;
+  box-shadow: 0 1.2rem 2.8rem rgba(var(--r1-primary), 0.22);
+}
+
+.button:hover,
+.button:focus,
+button:hover,
+button:focus,
+.shopify-payment-button__button:hover,
+.shopify-payment-button__button:focus {
+  background: linear-gradient(120deg, rgba(var(--r1-primary-dark), 1) 0%, rgba(var(--r1-secondary), 1) 100%);
+  box-shadow: 0 1.6rem 3.4rem rgba(var(--r1-primary-dark), 0.28);
+}
+
+.badge,
+.card-information .badge {
+  background: rgba(var(--r1-secondary), 0.12);
+  color: rgb(var(--r1-primary-dark));
+  border: 0.1rem solid rgba(var(--r1-secondary), 0.35);
+  border-radius: 999px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.announcement-bar,
+.announcement-bar-section {
+  background: linear-gradient(120deg, rgba(var(--r1-primary-dark), 0.95) 0%, rgba(var(--r1-secondary), 0.95) 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.announcement-bar::after,
+.announcement-bar-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.12) 0, transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(var(--r1-accent), 0.18) 0, transparent 55%);
+  pointer-events: none;
+}
+
+.header-wrapper {
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(14px);
+  border-bottom: 0.1rem solid rgba(var(--r1-primary), 0.12);
+  box-shadow: 0 2rem 4rem rgba(18, 7, 46, 0.06);
+}
+
+.header__icon .icon,
+.header__heading-link,
+.list-menu__item--link {
+  color: rgba(var(--r1-ink), 0.92);
+  font-weight: 500;
+}
+
+.list-menu__item--link:hover,
+.list-menu__item--link:focus,
+.header__heading-link:hover,
+.header__heading-link:focus {
+  color: rgb(var(--r1-primary));
+}
+
+.header__tamil-strip {
+  width: 100%;
+  background: linear-gradient(90deg, rgba(var(--r1-primary), 0.95) 0%, rgba(var(--r1-secondary), 0.92) 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.8rem 1.6rem 1.3rem;
+  border-top: 0.2rem solid rgba(var(--r1-accent), 0.4);
+}
+
+.header__tamil-strip-primary {
+  font-family: 'Clash Display', 'Manrope', var(--font-heading-family);
+  font-size: 1.5rem;
+  letter-spacing: 0.18em;
+}
+
+.header__tamil-strip-secondary {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@media screen and (min-width: 750px) {
+  .header__tamil-strip {
+    flex-direction: row;
+    justify-content: center;
+    padding: 1.2rem 4rem;
+    gap: 2.4rem;
+  }
+
+  .header__tamil-strip-primary {
+    font-size: 1.7rem;
+  }
+
+  .header__tamil-strip-secondary {
+    font-size: 1.2rem;
+  }
+}
+
+.shopify-section.section-header + .shopify-section .section,
+.section:not(.shopify-section-header) {
+  position: relative;
+}
+
+.section:not(.shopify-section-header)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(var(--r1-secondary), 0.08) 0%, rgba(var(--r1-primary), 0.04) 100%);
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.card,
+.card-wrapper,
+.contains-card--product,
+.contains-card--collection {
+  border-radius: 1.4rem;
+  border: 0.12rem solid rgba(var(--r1-muted), 0.18);
+  box-shadow: 0 2.2rem 4.6rem rgba(24, 13, 56, 0.1);
+  overflow: hidden;
+  transition: transform var(--duration-medium) ease, box-shadow var(--duration-medium) ease;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.card:hover,
+.card-wrapper:hover,
+.contains-card--product:hover,
+.contains-card--collection:hover {
+  transform: translateY(-0.6rem);
+  box-shadow: 0 2.8rem 5.6rem rgba(24, 13, 56, 0.18);
+}
+
+.card__heading,
+.card-information__wrapper .price-item,
+.price-item,
+.product__description {
+  font-family: 'Manrope', var(--font-body-family);
+  letter-spacing: 0.02em;
+}
+
+.price-item--sale,
+.badge.sale,
+.price-item--highlight {
+  color: rgb(var(--r1-primary));
+}
+
+.image-banner,
+.image-with-text {
+  position: relative;
+  border-radius: 2.4rem;
+  overflow: hidden;
+  box-shadow: 0 3rem 6rem rgba(19, 9, 46, 0.12);
+  border: 0.16rem solid rgba(var(--r1-muted), 0.2);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.image-banner::after,
+.image-with-text::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(var(--r1-primary), 0.22), rgba(var(--r1-secondary), 0.18));
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.rich-text__buttons .button,
+.image-with-text__content .button {
+  margin-top: 1.6rem;
+}
+
+.footer {
+  background: linear-gradient(145deg, rgba(var(--r1-primary-dark), 1) 0%, rgba(var(--r1-secondary), 1) 70%);
+  color: rgba(255, 255, 255, 0.92);
+  border-top: 0.3rem solid rgba(var(--r1-accent), 0.55);
+}
+
+.footer a,
+.footer .link {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.footer a:hover,
+.footer .link:hover {
+  color: rgb(var(--r1-accent));
+}
+
+.footer__content-bottom {
+  border-top-color: rgba(255, 255, 255, 0.16);
+}
+
+.footer__copyright {
+  color: rgba(255, 255, 255, 0.78);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.footer__payment .icon--full-color {
+  filter: saturate(0.95) brightness(1.1);
 }
 
 .product-card-wrapper .card,
