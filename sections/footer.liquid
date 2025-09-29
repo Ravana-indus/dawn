@@ -250,6 +250,17 @@
     {%- endunless -%}
   {%- endif -%}
 
+  {% if section.settings.heritage_badge != blank or section.settings.heritage_message != blank %}
+    <div class="footer__heritage page-width">
+      {% if section.settings.heritage_badge != blank %}
+        <span class="footer__heritage-badge">{{ section.settings.heritage_badge | escape }}</span>
+      {% endif %}
+      {% if section.settings.heritage_message != blank %}
+        <p class="footer__heritage-text">{{ section.settings.heritage_message }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
   <div
     class="footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
     {% if settings.animations_reveal_on_scroll %}
@@ -429,6 +440,22 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Tamil heritage callout"
+    },
+    {
+      "type": "text",
+      "id": "heritage_badge",
+      "label": "Heritage badge (Tamil)",
+      "default": "தமிழ் பண்பு"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heritage_message",
+      "label": "Heritage message",
+      "default": "Honouring the Tamil diaspora with luxe streetwear rooted in tradition."
     },
     {
       "type": "header",
