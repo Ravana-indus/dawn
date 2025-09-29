@@ -1,0 +1,125 @@
+/* Critical CSS for Ravan Fashion - Above the fold content */
+/* Tamil Cultural Elements & Core Layout */
+
+/* CSS Variables for Cultural Colors */
+:root {
+  --ravan-maroon: #8B0000;
+  --ravan-saffron: #FF9933;
+  --ravan-gold: #FFD700;
+  --ravan-terracotta: #CD5C5C;
+  --ravan-indigo: #4B0082;
+  --text-color: #333333;
+  --background-color: #FFFFFF;
+}
+
+/* Critical Typography */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+.tamil-text {
+  font-family: 'Tamil Sangam MN', 'Noto Sans Tamil', 'Latha', 'Arial Unicode MS', sans-serif;
+  unicode-range: U+0980-09FF, U+0B80-0BFF;
+}
+
+/* Critical Header Styles */
+.announcement-bar {
+  background: var(--ravan-maroon);
+  color: white;
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+.header {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Critical Product Layout */
+.product__info-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.product__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--ravan-maroon);
+}
+
+.product__price {
+  font-size: 1.5rem;
+  color: var(--ravan-saffron);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* Critical Cultural Elements */
+.cultural-product-details__wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.cultural-product-details__heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--ravan-maroon) 0%, var(--ravan-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Critical Button Styles */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, var(--ravan-maroon) 0%, var(--ravan-saffron) 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(139, 0, 0, 0.3);
+}
+
+/* Critical Layout Grid */
+@media screen and (min-width: 750px) {
+  .cultural-elements__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .cultural-elements__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .product__title {
+    font-size: 1.5rem;
+  }
+
+  .product__price {
+    font-size: 1.25rem;
+  }
+}

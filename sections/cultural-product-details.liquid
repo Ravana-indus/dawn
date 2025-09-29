@@ -130,7 +130,82 @@
   </div>
 </div>
 
-{{ 'section-cultural-product-details.css' | asset_url | stylesheet_tag }}
+{{ 'ravan-fashion-critical.css' | asset_url | stylesheet_tag }}
+<link rel="preload" href="{{ 'section-cultural-product-details.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ 'section-cultural-product-details.css' | asset_url }}"></noscript>
+{{ 'ravan-fashion-optimized.js' | asset_url | script_tag: defer: true }}
+
+<!-- Service Worker Registration -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('{{ 'ravan-fashion-service-worker.js' | asset_url }}')
+        .then(function(registration) {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        })
+        .catch(function(error) {
+          console.log('ServiceWorker registration failed: ', error);
+        });
+    });
+  }
+</script>
+
+<!-- Performance Monitoring -->
+<script>
+  // Core Web Vitals monitoring
+  function sendToAnalytics(metric) {
+    // Replace with your analytics endpoint
+    if (window.gtag) {
+      gtag('event', metric.name, {
+        'custom_parameter_1': metric.value,
+        'custom_parameter_2': metric.id
+      });
+    }
+  }
+
+  // Report Web Vitals
+  if ('PerformanceObserver' in window) {
+    // Largest Contentful Paint
+    new PerformanceObserver(function(entryList) {
+      const entries = entryList.getEntries();
+      const lastEntry = entries[entries.length - 1];
+      sendToAnalytics({
+        name: 'LCP',
+        value: Math.round(lastEntry.startTime),
+        id: lastEntry.id
+      });
+    }).observe({ entryTypes: ['largest-contentful-paint'] });
+
+    // First Input Delay
+    new PerformanceObserver(function(entryList) {
+      const entries = entryList.getEntries();
+      entries.forEach(function(entry) {
+        if (entry.startTime < 10000) { // Only consider inputs in first 10s
+          sendToAnalytics({
+            name: 'FID',
+            value: Math.round(entry.processingStart - entry.startTime),
+            id: entry.id
+          });
+        }
+      });
+    }).observe({ entryTypes: ['first-input'] });
+
+    // Cumulative Layout Shift
+    let clsValue = 0;
+    new PerformanceObserver(function(entryList) {
+      entryList.getEntries().forEach(function(entry) {
+        if (!entry.hadRecentInput) {
+          clsValue += entry.value;
+          sendToAnalytics({
+            name: 'CLS',
+            value: Math.round(clsValue * 1000),
+            id: entry.id
+          });
+        }
+      });
+    }).observe({ entryTypes: ['layout-shift'] });
+  }
+</script>
 
 {% schema %}
 {
